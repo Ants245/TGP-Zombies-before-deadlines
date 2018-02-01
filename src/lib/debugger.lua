@@ -35,7 +35,7 @@ function debugger.keypressed(key, debugKey)
   end
 end
 
-function debugger.update()
+function debugger.update(dt)
   -- Update the graphs
   fpsGraph:update(dt)
   memGraph:update(dt)
