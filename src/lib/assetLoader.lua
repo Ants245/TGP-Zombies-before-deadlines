@@ -14,4 +14,8 @@ function assetLoader.load()
   loader.init() -- Do not forget this!
 end
 
+function assetLoader.GetLoaderObj()
+  return loader
+end
+
 return assetLoader

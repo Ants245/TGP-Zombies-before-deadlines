@@ -1,7 +1,7 @@
 -- Imports
 shack = require('lib/plugins/Shack') -- Screen shaking effects
 debugger = require('lib/debugger')
-assetLoader = require('lib/assetLoader')
+audioManager = require('lib/audioManager')
 
 -- Initialize debugger math helper
 debugger.fpsMath()
@@ -23,6 +23,10 @@ end
 function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
+
+  if (key == "f") then
+    audioManager.Play(audioManager.sounds.ui.click1)
+  end
 end
 
 -- Love2D Update
