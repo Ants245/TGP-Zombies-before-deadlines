@@ -28,6 +28,10 @@ function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
 
+  if (key == "f") then
+    shack:setShake(20)
+  end
+
   if (key == "1") then
     audioManager.Play(audioManager.sounds.ui.click1)
   end
@@ -38,6 +42,9 @@ function love.update(dt)
   -- Debug graph update
   debugger.Update(dt)
 
+  -- Shack update
+  shack:update(dt)
+
   spriteManager.Update(dt)
 end
 
@@ -47,6 +54,9 @@ function love.draw()
   if(debugger.doDrawDebug == true) then
     debugger.Draw()
   end
+
+  -- Draw shack
+  shack:apply()
 
   spriteManager.Draw()
 end
