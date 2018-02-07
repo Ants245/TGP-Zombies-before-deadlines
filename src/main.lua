@@ -50,10 +50,8 @@ end
 
 -- Love2D Draw
 function love.draw()
-  -- Toggle Debug Graph
-  if(debugger.doDrawDebug == true) then
-    debugger.Draw()
-  end
+  -- Draw Debug Graph
+  debugger.Draw()
 
   -- Draw shack
   shack:apply()

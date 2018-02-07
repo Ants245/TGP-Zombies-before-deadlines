@@ -24,14 +24,8 @@ end
 
 function debugger.keypressed(key, debugKey)
   if (key == debugKey) then
-    -- Logging
     log.info("[DEBUGGER]: Toggling debug graph")
-
-    if (doDrawDebug == false) then
-      doDrawDebug = true
-    elseif (doDrawDebug == true) then
-      doDrawDebug = false
-    end
+    doDrawDebug = not doDrawDebug
   end
 end
 
@@ -46,9 +40,11 @@ function debugger.Update(dt)
 end
 
 function debugger.Draw()
-  fpsGraph:draw()
-  memGraph:draw()
-  dtGraph:draw()
+  if(doDrawDebug == true) then
+    fpsGraph:draw()
+    memGraph:draw()
+    dtGraph:draw()
+  end
 end
 
 return debugger
