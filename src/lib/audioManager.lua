@@ -1,26 +1,30 @@
-assetLoader = require('lib/assetLoader')
+log = require('lib/plugins/Log')
 
 audioManager = {}
 audioManager.sounds = {}
+audioManager.sounds.ui = {}
+audioManager.sounds.voiceover = {}
 
-function GetUISound(path)
-  return assetLoader.Audio.Stream.ui .. path
+-- Load sounds
+function audioManager.Load()
+  log.info("[INIT]: Loading sounds")
+
+  audioManager.sounds.ui.click1 = love.audio.newSource("assets/sounds/ui/click1.ogg")
+  audioManager.sounds.ui.click2 = love.audio.newSource("assets/sounds/ui/click2.ogg")
+  audioManager.sounds.ui.click3 = love.audio.newSource("assets/sounds/ui/click3.ogg")
+  audioManager.sounds.ui.click4 = love.audio.newSource("assets/sounds/ui/click4.ogg")
+  audioManager.sounds.ui.click5 = love.audio.newSource("assets/sounds/ui/click5.ogg")
+  
+  audioManager.sounds.voiceover.one = love.audio.newSource("assets/sounds/voiceover/1.ogg")
+  audioManager.sounds.voiceover.two = love.audio.newSource("assets/sounds/voiceover/2.ogg")
+  audioManager.sounds.voiceover.three = love.audio.newSource("assets/sounds/voiceover/3.ogg")
+  audioManager.sounds.voiceover.four = love.audio.newSource("assets/sounds/voiceover/4.ogg")
+  audioManager.sounds.voiceover.five = love.audio.newSource("assets/sounds/voiceover/5.ogg")
 end
-
-function GetVoiceOverSound(path)
-  return assetLoader.Audio.Stream.voiceover .. path
-end
-
--- UI sounds
-audioManager.sounds.ui.click1 = GetUISound(click1)
-audioManager.sounds.ui.click2 = GetUISound(click2)
-audioManager.sounds.ui.click3 = GetUISound(click3)
-audioManager.sounds.ui.click4 = GetUISound(click4)
-audioManager.sounds.ui.click5 = GetUISound(click5)
 
 -- Play sound
-function audioManager.Play(sound)
-  love.audio.play(sounds.sound)
+function audioManager.Play(path)
+  love.audio.play(path)
 end
 
 return audioManager

@@ -13,8 +13,8 @@ function debugger.fpsMath()
 end
 
 -- Initialization
-function debugger.load()
-  log.info("[DEBUGGER]: Loading debugger")
+function debugger.Load()
+  log.info("[INIT]: Loading debugger")
 
   doDrawDebug = false
   fpsGraph = debugGraph:new('fps', 10, 10, 335)
@@ -35,7 +35,7 @@ function debugger.keypressed(key, debugKey)
   end
 end
 
-function debugger.update(dt)
+function debugger.Update(dt)
   -- Update the graphs
   fpsGraph:update(dt)
   memGraph:update(dt)
@@ -45,7 +45,7 @@ function debugger.update(dt)
   dtGraph.label = 'DT: ' ..  math.round(dt, 4)
 end
 
-function debugger.draw()
+function debugger.Draw()
   fpsGraph:draw()
   memGraph:draw()
   dtGraph:draw()

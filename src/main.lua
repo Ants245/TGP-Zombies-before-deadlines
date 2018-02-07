@@ -1,6 +1,9 @@
--- Imports
-shack = require('lib/plugins/Shack') -- Screen shaking effects
+-- Plugins
+shack = require('lib/plugins/Shack')
 debugger = require('lib/debugger')
+
+-- Managers
+spriteManager = require('lib/spriteManager')
 audioManager = require('lib/audioManager')
 
 -- Initialize debugger math helper
@@ -13,10 +16,11 @@ function love.load()
   shack:setDimensions(love.graphics.getDimensions())
 
   -- Initialize debug graph
-  debugger.load()
+  debugger.Load()
 
-  -- Initialize asset loader
-  assetLoader.load()
+  -- Initialize assets
+  spriteManager.Load()
+  audioManager.Load()
 end
 
 -- Love2D Key press check
@@ -24,7 +28,7 @@ function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
 
-  if (key == "f") then
+  if (key == "1") then
     audioManager.Play(audioManager.sounds.ui.click1)
   end
 end
@@ -32,13 +36,17 @@ end
 -- Love2D Update
 function love.update(dt)
   -- Debug graph update
-  debugger.update(dt)
+  debugger.Update(dt)
+
+  spriteManager.Update(dt)
 end
 
 -- Love2D Draw
 function love.draw()
   -- Toggle Debug Graph
   if(debugger.doDrawDebug == true) then
-    debugger.draw()
+    debugger.Draw()
   end
+
+  spriteManager.Draw()
 end
