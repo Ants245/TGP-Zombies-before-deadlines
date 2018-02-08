@@ -6,12 +6,14 @@ debugger = require('lib/debugger')
 spriteManager = require('lib/spriteManager')
 audioManager = require('lib/audioManager')
 
+-- Config options
+config = require('conf')
+
 -- Initialize debugger math helper
 debugger.fpsMath()
 
 -- Love2D Initialization
 function love.load()
-
   -- Initialize Shack to game window dimensions
   shack:setDimensions(love.graphics.getDimensions())
 
@@ -27,6 +29,11 @@ end
 function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
+
+  -- Toggle fullscreen
+  if (key == "f11") then
+    config.toggleFullscreen()
+  end
 
   if (key == "f") then
     shack:setShake(20)
@@ -50,11 +57,13 @@ end
 
 -- Love2D Draw
 function love.draw()
-  -- Draw Debug Graph
-  debugger.Draw()
-
   -- Draw shack
   shack:apply()
 
+  -- Draw sprites
   spriteManager.Draw()
+
+  -- Draw Debug Graph
+  -- MUST be last to make top layer
+  debugger.Draw()
 end
