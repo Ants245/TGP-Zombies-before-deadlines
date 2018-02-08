@@ -57,11 +57,13 @@ end
 
 -- Love2D Draw
 function love.draw()
-  -- Draw Debug Graph
-  debugger.Draw()
-
   -- Draw shack
   shack:apply()
 
+  -- Draw sprites
   spriteManager.Draw()
+
+  -- Draw Debug Graph
+  -- MUST be last to make top layer
+  debugger.Draw()
 end
