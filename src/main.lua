@@ -1,5 +1,5 @@
 -- Plugins
-shack = require('lib/plugins/Shack')
+shack = require('plugins/Shack')
 debugger = require('lib/debugger')
 
 -- Managers

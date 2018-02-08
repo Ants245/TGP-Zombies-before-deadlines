@@ -1,6 +1,6 @@
 -- Import plugins
-debugGraph = require('lib/plugins/DebugGraph') -- Debugging statistics
-log = require('lib/plugins/Log') -- Basic logging functionality
+debugGraph = require('plugins/DebugGraph') -- Debugging statistics
+log = require('plugins/Log') -- Basic logging functionality
 
 debugger = {}
 

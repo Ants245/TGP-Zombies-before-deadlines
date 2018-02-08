@@ -1,4 +1,4 @@
-log = require('lib/plugins/Log')
+log = require('plugins/Log')
 
 spriteManager = {}
 spriteManager.sprites = {}
