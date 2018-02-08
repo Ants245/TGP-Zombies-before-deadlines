@@ -11,12 +11,12 @@ function spriteManager.Load()
   log.info("[INIT]: Loading sprites")
 
   -- Entities
-  spriteManager.sprites.entities.playerSpritesheet = love.graphics.newImage("assets/sprites/entities/playerSpritesheet.png")
-  spriteManager.sprites.entities.zombieSpritesheet = love.graphics.newImage("assets/sprites/entities/zombieSpritesheet.png")
+  spriteManager.sprites.entities.player = love.graphics.newImage("assets/sprites/entities/playerSpritesheet.png")
+  spriteManager.sprites.entities.zombie = love.graphics.newImage("assets/sprites/entities/zombieSpritesheet.png")
 
   -- Weapons
-  spriteManager.sprites.weapons.shotgunSpritesheet = love.graphics.newImage("assets/sprites/weapons/spritesheet_shotgun.png")
-  spriteManager.sprites.weapons.pistolSpritesheet = love.graphics.newImage("assets/sprites/weapons/spritesheet_pistol.png")
+  spriteManager.sprites.weapons.shotgun = love.graphics.newImage("assets/sprites/weapons/spritesheet_shotgun.png")
+  spriteManager.sprites.weapons.pistol = love.graphics.newImage("assets/sprites/weapons/spritesheet_pistol.png")
 
   -- UI spritesheets
   spriteManager.sprites.ui.red = love.graphics.newImage("assets/sprites/ui/redSheet.png")
