@@ -22,6 +22,9 @@ function spriteManager.Load()
   spriteManager.sprites.ui.red = love.graphics.newImage("assets/sprites/ui/redSheet.png")
   spriteManager.sprites.ui.green = love.graphics.newImage("assets/sprites/ui/greenSheet.png")
   spriteManager.sprites.ui.blue = love.graphics.newImage("assets/sprites/ui/blueSheet.png")
+
+  -- Misc sprites
+  spriteManager.sprites.backgroundImage = love.graphics.newImage("assets/sprites/background_road_tile.png")
 end
 
 function spriteManager.Update(dt)
@@ -29,7 +32,15 @@ function spriteManager.Update(dt)
 end
 
 function spriteManager.Draw()
-  
+  drawBackground(0, 0)
+end
+
+function drawBackground(posX, posY)
+  -- Set sprite wrap mode to repeat(tile)
+  spriteManager.sprites.backgroundImage:setWrap("mirroredrepeat", "mirroredrepeat")
+
+  -- Draw sprite
+  love.graphics.draw(spriteManager.sprites.backgroundImage, posX, posY)
 end
 
 return spriteManager
