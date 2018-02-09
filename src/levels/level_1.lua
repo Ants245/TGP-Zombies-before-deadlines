@@ -4,7 +4,7 @@ local vec2 = require("lib/vector2D")
 
 level_1 = {}
 
-function level_1.Load()
+function level_1.Load(numZombieSpawn, bulletFireRate)
   frames = {}
   activeFrame = 0
   currentFrame = 01
@@ -24,13 +24,13 @@ function level_1.Load()
   target = love.graphics.newImage("assets/sprites/crosshair.png")
 
   bullets = {}
---Needed to create the table
+  --Needed to create the table
   timeLastBullet = 0
-  timeBetweenBullets = .05
+  timeBetweenBullets = bulletFireRate
   
-  zombieAmount = 1
+  zombieAmount = numZombieSpawn
   zombiesLeft = zombieAmount
---Set this lower for rapid bullets or higher for slower firing
+  --Set this lower for rapid bullets or higher for slower firing
 
   local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
   love.mouse.setVisible(state)
@@ -56,7 +56,6 @@ function level_1.Load()
       ranNumX = math.random(1400)
       ranNumY = math.random(1000, 9700)
     end
-    
 
     Enemy[i] = {}
     
@@ -80,27 +79,14 @@ function level_1.Load()
   end
   ---------------------------------------
 
-  love.graphics.setBackgroundColor(0, 0, 0) --set the background color to a nice blue
-  love.window.setMode(1430, 700) --set the window dimensions to 650 by 650
-  love.audio.setVolume(1)
-
   RoadHeight = 99
-
   test1 = 0
-
   speed = 6
-
   distance = 0
   distance2 = 0
   distance3 = 0
-
   CurrentFrameTime =0 
   SpeedDecresTime = 500
-
-  font = love.graphics.newFont(2064)
-
-  love.window.setTitle("Racing game")
-
 end
 
 function level_1.KeyPressed(key)
@@ -194,12 +180,10 @@ function level_1.Update(dt)
       end
     end
   end
--------------------------------------------------------------
 
----------------------------------------------
--- bullets,  click mouse 1
----------------------------------------------
-
+  ---------------------------------------------
+  -- bullets,  click mouse 1
+  ---------------------------------------------
   if love.mouse.isDown(1)  then   
     shot = 1
     createBullet(player:getX(), player:getY())
@@ -223,9 +207,9 @@ function level_1.Update(dt)
     end
   end
 
-----------------------
--- Player movement
-----------------------
+  ----------------------
+  -- Player movement
+  ----------------------
   if love.keyboard.isDown("d") then
     player:setX(player:getX() + 4.2)
   end

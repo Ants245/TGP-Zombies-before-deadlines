@@ -28,7 +28,7 @@ function love.load()
   audioManager.Load()
 
   -- Initialize level 1
-  level_1.Load()
+  level_1.Load(500, 0.05)
 end
 
 -- Love2D Key press check
