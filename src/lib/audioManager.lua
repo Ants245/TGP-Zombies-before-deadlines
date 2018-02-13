@@ -9,6 +9,9 @@ audioManager.sounds.voiceover = {}
 function audioManager.Load()
   log.info("[INIT]: Loading sounds")
 
+  -- Set window volume to 100%
+  love.audio.setVolume(1)
+
   audioManager.sounds.ui.click1 = love.audio.newSource("assets/sounds/ui/click1.ogg")
   audioManager.sounds.ui.click2 = love.audio.newSource("assets/sounds/ui/click2.ogg")
   audioManager.sounds.ui.click3 = love.audio.newSource("assets/sounds/ui/click3.ogg")

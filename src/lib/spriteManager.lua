@@ -11,8 +11,8 @@ function spriteManager.Load()
   log.info("[INIT]: Loading sprites")
 
   -- Entities
-  spriteManager.sprites.entities.player = love.graphics.newImage("assets/sprites/entities/playerSpritesheet.png")
-  spriteManager.sprites.entities.zombie = love.graphics.newImage("assets/sprites/entities/zombieSpritesheet.png")
+  spriteManager.sprites.entities.player = love.graphics.newImage("assets/sprites/entities/player/playerSpritesheet.png")
+  spriteManager.sprites.entities.zombie = love.graphics.newImage("assets/sprites/entities/zombie/zombieSpritesheet.png")
 
   -- Weapons
   spriteManager.sprites.weapons.shotgun = love.graphics.newImage("assets/sprites/weapons/spritesheet_shotgun.png")
@@ -24,7 +24,7 @@ function spriteManager.Load()
   spriteManager.sprites.ui.blue = love.graphics.newImage("assets/sprites/ui/blueSheet.png")
 
   -- Misc sprites
-  spriteManager.sprites.backgroundImage = love.graphics.newImage("assets/sprites/background_road_tile.png")
+  spriteManager.sprites.backgroundImage = love.graphics.newImage("assets/sprites/background_road.png")
 end
 
 function spriteManager.Update(dt)

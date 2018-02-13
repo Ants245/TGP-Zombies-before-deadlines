@@ -10,11 +10,11 @@ function love.conf(c)
   local window = c.screen or c.window -- love 0.9 renamed "screen" to "window"
   window.minwidth = 720 -- Sets minimum window width
   window.minheight = 480 -- Sets minimum window height
-  window.vsync = false -- Disable V-Sync
+  window.vsync = true -- Enable V-Sync
   window.highdpi = true -- Enable High DPI mode
   window.msaa = 4 -- Sets msaa sampling to 4
 
-  isWindowFullscreen = true
+  isWindowFullscreen = false
   setFullscreenType(window)
 end
 
