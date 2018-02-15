@@ -10,7 +10,7 @@ audioManager = require('lib/audioManager')
 config = require('conf')
 
 -- Level 1 import
-level_1 = require('levels/level_1')
+levelManager = require('levels/levelManager')
 
 -- Initialize debugger math helper
 debugger.fpsMath()
@@ -28,7 +28,7 @@ function love.load()
   audioManager.Load()
 
   -- Initialize level 1
-  level_1.Load(500, 0.05)
+  levelManager.Load(500, 0.05)
 end
 
 -- Love2D Key press check
@@ -37,7 +37,7 @@ function love.keypressed(key)
   debugger.keypressed(key, "f12")
 
   -- Level 1 key press checks
-  level_1.KeyPressed(key)
+  levelManager.KeyPressed(key)
 
   -- Toggle fullscreen
   if (key == "f11") then
@@ -55,7 +55,7 @@ end
 
 function love.mousepressed(x, y, button)
   -- Check mouse movement/clicks
-  level_1.MousePressed(x, y, button)
+  levelManager.MousePressed(x, y, button)
 end
 
 -- Love2D Update
@@ -70,7 +70,7 @@ function love.update(dt)
   spriteManager.Update(dt)
 
   -- Level 1 update
-  level_1.Update(dt)
+  levelManager.Update(dt)
 end
 
 -- Love2D Draw
@@ -82,7 +82,7 @@ function love.draw()
   spriteManager.Draw()
 
   -- Level 1 draw
-  level_1.Draw()
+  levelManager.Draw()
 
   -- Draw Debug Graph
   -- MUST be last to make top layer
