@@ -8,7 +8,7 @@ local playerFrames = {}
 levelManager = {}
 
 ----------------------------------------
--- Initializtion methodsssss
+-- Initializtion methods
 ----------------------------------------
 function InitPlayer()
     activeFrame = 0
@@ -272,6 +272,10 @@ function levelManager.Update(dt)
         end
         currentFrameTime = 0
     end
+
+    -- Set mouseX / mouseY values to x / y position of mouse every tick
+    mouseX = love.mouse.getX()
+    mouseY = love.mouse.getY()
 
     UpdateZombies(dt)
     UpdateBullets(dt)
