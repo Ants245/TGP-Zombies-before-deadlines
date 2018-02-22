@@ -118,7 +118,7 @@ end
 function levelManager.KeyPressed(key)
     -- Close the game if the escape key is pressed
     if(key == "escape") then
-        love.event.quit(Close:play())
+        love.event.quit()
     end
 end
 

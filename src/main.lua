@@ -3,11 +3,8 @@ shack = require('plugins/Shack')
 debugger = require('lib/debugger')
 
 -- Managers
-spriteManager = require('lib/spriteManager')
-audioManager = require('lib/audioManager')
-
--- Config options
-config = require('conf')
+spriteManager = require('lib/managers/spriteManager')
+audioManager = require('lib/managers/audioManager')
 
 -- Import levels
 level_1 = require('levels/level_1')

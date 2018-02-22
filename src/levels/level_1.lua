@@ -1,6 +1,6 @@
 -- Imports
-levelManager = require('lib/levelManager')
-spriteManager = require('lib/spriteManager')
+levelManager = require('lib/managers/levelManager')
+spriteManager = require('lib/managers/spriteManager')
 
 level_1 = {}
 
