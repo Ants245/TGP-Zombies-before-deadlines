@@ -1,7 +1,7 @@
 -- Imports
-local Vector = require("lib/vector")
-local Vec2D = require("lib/vector2D")
 spriteManager = require('lib/managers/spriteManager')
+playerManager = require('lib/managers/playerManager')
+zombieManager = require('lib/managers/zombieManager')
 
 local bulletRPM, numZombies, mouseX, mouseY, shot, elapsedTime
 local playerFrames = {}
@@ -11,71 +11,9 @@ levelManager = {}
 ----------------------------------------
 -- Initializtion methods
 ----------------------------------------
-function InitPlayer()
-    activeFrame = 0
-    currentFrame = 01
-
-    Player = spriteManager.sprites.entities.player
-    playerFrames[1] = love.graphics.newQuad(0, 25, 14, 23, Player:getDimensions())
-    playerFrames[2] = love.graphics.newQuad(14, 25, 14, 23, Player:getDimensions())
-    playerFrames[3] = love.graphics.newQuad(28, 25, 14, 23, Player:getDimensions())
-    playerFrames[4] = love.graphics.newQuad(42, 25, 14, 23, Player:getDimensions())
-    playerFrames[5] = love.graphics.newQuad(56, 25, 14, 23, Player:getDimensions())
-    activeFrame = playerFrames[currentFrame]
-
-    playerVector = Vector.Vector2D(100,100)
-end
-
-function InitZombie()
-    zombie = spriteManager.sprites.entities.zombie
-    zombieRun = spriteManager.sprites.entities.zombieFast
-
-    Enemy = {}
-
-    for i=0, numZombies do
-        local ranNumX = 0
-        local ranNumY = 0
-        local sector = math.random(4)
-        local speed = math.random(30)
-
-        if sector == 1 then
-            ranNumX = math.random(-300, -9000)
-            ranNumY = math.random(700)
-        elseif sector == 2 then
-            ranNumX = math.random(1400)
-            ranNumY = math.random(-300, -9000)
-        elseif sector == 3 then
-            ranNumX = math.random(2000, 10000)
-            ranNumY = math.random(700)
-        elseif sector == 4 then
-            ranNumX = math.random(1400)
-            ranNumY = math.random(1000, 9700)
-        end
-
-        Enemy[i] = {}
-
-        if speed == 1 then
-            Enemy[i].speed = 5
-            Enemy[i].image = zombieRun
-        else
-            Enemy[i].speed = 2
-            Enemy[i].image = zombie
-        end
-
-        Enemy[i].x = ranNumX
-        Enemy[i].y = ranNumY
-        Enemy[i].DirX = 0
-        Enemy[i].DirY = 0
-        Enemy[i].AngleX = 0
-        Enemy[i].AngleY = 0
-        Enemy[i].distance = 0
-        Enemy[i].sector = sector
-    end
-end
-
 function levelManager.Load(numZombieSpawn, bulletFireRate)
     -- Load crosshair
-    target = love.graphics.newImage("assets/sprites/crosshair.png")
+    target = spriteManager.sprites.ui.crosshair
 
     -- Create table for bullets to be stored in
     bullets = {}
@@ -89,10 +27,10 @@ function levelManager.Load(numZombieSpawn, bulletFireRate)
     numZombiesLeft = numZombies
 
     -- Initialize Player
-    InitPlayer()
+    playerManager.Load(playerFrames)
 
     -- Initialize Zombies
-    InitZombie()
+    zombieManager.Load(numZombies)
 
     -- Sets mouse to be invisible
     love.mouse.setVisible(not love.mouse.isVisible())
@@ -140,8 +78,8 @@ function CreateBullet(x,y)
       y = y,    
       DirX = 0, 
       DirY = 0, 
-      AngleX = mouseX - playerVector:getX(), 
-      AngleY = mouseY - playerVector:getY(), 
+      AngleX = mouseX - playerManager.GetPlayerVector():getX(), 
+      AngleY = mouseY - playerManager.GetPlayerVector():getY(), 
       Distance = 0}
     timeLastBullet = love.timer.getTime()
   end
@@ -168,54 +106,10 @@ end
 ----------------------------------------
 -- Update methods
 ----------------------------------------
-function UpdateZombies(dt)
-    ------------------------------------------------------------
-    -- Table of enemys not tracking properly, they move in one direction 
-    -- (using the same method as the single tracking object that uses 2D vectors)
-    -------------------------------------------------------------
-    for i, b in pairs(Enemy) do
-        b.AngleX = playerVector:getX() - b.x
-        b.AngleY = playerVector:getY() - b.y
-        b.distance = math.sqrt((b.AngleX * b.AngleX) + (b.AngleY * b.AngleY))
-        b.DirX = (b.AngleX / b.distance)
-        b.DirY = (b.AngleY / b.distance)
-
-        if b.sector == 1 then
-            if b.x < 0 then
-                b.x = (b.x + (b.DirX * b.speed))
-            else
-                b.x = (b.x + (b.DirX * b.speed))
-                b.y = (b.y + (b.DirY * b.speed))
-            end
-        elseif b.sector == 3 then
-            if b.x > 1430 then  
-                b.x = (b.x + (b.DirX * b.speed))
-            else
-                b.x = (b.x + (b.DirX * b.speed))
-                b.y = (b.y + (b.DirY * b.speed))
-            end
-        elseif b.sector == 2 then
-            if b.y < 0 then 
-                b.y = (b.y + (b.DirY * b.speed))
-            else
-                b.x = (b.x + (b.DirX * b.speed))
-                b.y = (b.y + (b.DirY * b.speed))
-            end
-        elseif b.sector == 4 then
-            if b.y > 700 then
-                b.y = (b.y + (b.DirY * b.speed))
-            else
-                b.x = (b.x + (b.DirX * b.speed))
-                b.y = (b.y + (b.DirY * b.speed))
-            end
-        end
-    end
-end
-
 function UpdateBullets(dt)
     if love.mouse.isDown(1)  then   
         shot = 1
-        CreateBullet(playerVector:getX(), playerVector:getY())
+        CreateBullet(playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY())
         for i, b in pairs(bullets) do
             b.distance = math.sqrt((b.AngleX * b.AngleX) + (b.AngleY * b.AngleY))
             b.DirX = b.AngleX / b.distance
@@ -236,24 +130,6 @@ function UpdateBullets(dt)
             activeFrame = playerFrames[currentFrame]
             elapsedTime = 0
         end
-    end
-end
-
-function UpdatePlayerMovement()
-    if love.keyboard.isDown("w") then
-        playerVector:setY(playerVector:getY() - 4.2) -- Move Up
-    end
-
-    if love.keyboard.isDown("s") then
-        playerVector:setY(playerVector:getY() + 4.2) -- Move Down
-    end
-
-    if love.keyboard.isDown("a") then
-        playerVector:setX(playerVector:getX() - 4.2) -- Move Left
-    end
-
-    if love.keyboard.isDown("d") then
-        playerVector:setX(playerVector:getX() + 4.2) -- Move Right
     end
 end
 
@@ -278,43 +154,27 @@ function levelManager.Update(dt)
     mouseX = love.mouse.getX()
     mouseY = love.mouse.getY()
 
-    UpdateZombies(dt)
+    playerManager.Update(dt)
+    zombieManager.Update(dt)
     UpdateBullets(dt)
-    UpdatePlayerMovement()
-
 end
 
 ----------------------------------------
 -- Draw methods
 ----------------------------------------
-function DrawPlayer()
-    local playerAngle = math.atan2(mouseY - playerVector:getY(), mouseX - playerVector:getX()) + (math.pi/2)
-    love.graphics.draw(Player, activeFrame, playerVector:getX(), playerVector:getY(), playerAngle)
-end
-
-function DrawZombies()
-    for i, b in pairs(Enemy) do 
-        local angle = math.atan2(playerVector:getY() - b.y, playerVector:getX() - b.x)
-        love.graphics.draw(b.image, b.x, b.y, angle,1,1, b.image:getWidth()/2, b.image:getHeight()/2)
-    end
-end
-
 function levelManager.Draw()
 
-    DrawPlayer()
-
-    -- Draw crosshair
-    love.graphics.draw(target,mouseX,mouseY,0,1,1, target:getWidth()/2, target:getHeight()/2)
+    playerManager.Draw(mouseX, mouseY)
+    zombieManager.Draw()
 
     -- Draw score/zombies left text
-    love.graphics.print(numZombies, 980,20, 0,2) 
-    love.graphics.print(" / " , 1040, 20,0 ,2)
-    love.graphics.print(numZombiesLeft, 1062, 20, 0,2)
+    love.graphics.print(numZombies .. " / " .. numZombiesLeft, 980,20, 0,2)
 
     -- Set background color
     love.graphics.setColor(255, 255, 255, 255) 
 
-    DrawZombies()
+    -- Draw crosshair
+    love.graphics.draw(target,mouseX,mouseY,0,1,1, target:getWidth()/2, target:getHeight()/2)
 
     -- Draw bullets
     for i, b in pairs(bullets) do
