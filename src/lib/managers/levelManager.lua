@@ -1,6 +1,7 @@
 -- Imports
 local Vector = require("lib/vector")
 local Vec2D = require("lib/vector2D")
+spriteManager = require('lib/managers/spriteManager')
 
 local bulletRPM, numZombies, mouseX, mouseY, shot, elapsedTime
 local playerFrames = {}
@@ -14,7 +15,7 @@ function InitPlayer()
     activeFrame = 0
     currentFrame = 01
 
-    Player = love.graphics.newImage("assets/sprites/entities/player/playerSpritesheet.png")
+    Player = spriteManager.sprites.entities.player
     playerFrames[1] = love.graphics.newQuad(0, 25, 14, 23, Player:getDimensions())
     playerFrames[2] = love.graphics.newQuad(14, 25, 14, 23, Player:getDimensions())
     playerFrames[3] = love.graphics.newQuad(28, 25, 14, 23, Player:getDimensions())
@@ -26,8 +27,8 @@ function InitPlayer()
 end
 
 function InitZombie()
-    zombie = love.graphics.newImage("assets/sprites/entities/zombie/Zombie.png")
-    zombieRun = love.graphics.newImage("assets/sprites/entities/zombie/ZombieRun.png")
+    zombie = spriteManager.sprites.entities.zombie
+    zombieRun = spriteManager.sprites.entities.zombieFast
 
     Enemy = {}
 
