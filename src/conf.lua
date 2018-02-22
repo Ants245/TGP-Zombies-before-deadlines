@@ -1,5 +1,3 @@
-config = {}
-
 function love.conf(c)
   -- Sets window title
   c.title = "Zombies Before Deadlines"
@@ -13,29 +11,9 @@ function love.conf(c)
   window.vsync = true -- Enable V-Sync
   window.highdpi = true -- Enable High DPI mode
   window.msaa = 4 -- Sets msaa sampling to 4
-
-  isWindowFullscreen = false
-  setFullscreenType(window)
+  window.width = 1920 -- Set window width
+  window.height = 1080 -- Set window height
+  window.borderless = true -- Set window to borderless mode
+  window.fullscreen = true -- Set window to fullscreen
+  window.resizable = false -- Disable window resizable
 end
-
-function config.toggleFullscreen()
-  isWindowFullscreen = not isWindowFullscreen
-end
-
-function setFullscreenType(window)
-  if(isWindowFullscreen == true) then
-    window.width = 1920
-    window.height = 1080
-    window.borderless = false
-    window.fullscreen = true
-    window.resizable = false
-  else
-    window.width = 1280
-    window.height = 720
-    window.borderless = false
-    window.fullscreen = false
-    window.resizable = true
-  end
-end
-
-return config

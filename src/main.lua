@@ -39,11 +39,6 @@ function love.keypressed(key)
   -- Level 1 key press checks
   levelManager.KeyPressed(key)
 
-  -- Toggle fullscreen
-  if (key == "f11") then
-    config.toggleFullscreen()
-  end
-
   if (key == "f") then
     shack:setShake(20)
   end
