@@ -11,9 +11,9 @@ function love.conf(c)
   window.vsync = true -- Enable V-Sync
   window.highdpi = true -- Enable High DPI mode
   window.msaa = 4 -- Sets msaa sampling to 4
-  window.width = 1920 -- Set window width
-  window.height = 1080 -- Set window height
-  window.borderless = true -- Set window to borderless mode
-  window.fullscreen = true -- Set window to fullscreen
+  window.width = 1280 -- Set window width
+  window.height = 720 -- Set window height
+  window.borderless = false -- Set window to borderless mode
+  window.fullscreen = false -- Set window to fullscreen
   window.resizable = false -- Disable window resizable
 end
