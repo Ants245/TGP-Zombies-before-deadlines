@@ -5,6 +5,7 @@ spriteManager.sprites = {}
 spriteManager.sprites.entities = {}
 spriteManager.sprites.weapons = {}
 spriteManager.sprites.ui = {}
+spriteManager.sprites.backgrounds = {}
 
 -- Load sprites
 function spriteManager.Load()
@@ -23,24 +24,16 @@ function spriteManager.Load()
   spriteManager.sprites.ui.green = love.graphics.newImage("assets/sprites/ui/greenSheet.png")
   spriteManager.sprites.ui.blue = love.graphics.newImage("assets/sprites/ui/blueSheet.png")
 
-  -- Misc sprites
-  spriteManager.sprites.backgroundImage = love.graphics.newImage("assets/sprites/background_road.png")
+  -- Level background images
+  spriteManager.sprites.backgrounds.level_1 = love.graphics.newImage("assets/sprites/background_road.png")
 end
 
-function spriteManager.Update(dt)
+-- function spriteManager.Update(dt)
   
-end
+-- end
 
-function spriteManager.Draw()
-  drawBackground(0, 0)
-end
+-- function spriteManager.Draw()
 
-function drawBackground(posX, posY)
-  -- Set sprite wrap mode to repeat(tile)
-  spriteManager.sprites.backgroundImage:setWrap("mirroredrepeat", "mirroredrepeat")
-
-  -- Draw sprite
-  love.graphics.draw(spriteManager.sprites.backgroundImage, posX, posY)
-end
+-- end
 
 return spriteManager

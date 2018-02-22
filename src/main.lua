@@ -9,8 +9,8 @@ audioManager = require('lib/audioManager')
 -- Config options
 config = require('conf')
 
--- Level 1 import
-levelManager = require('levels/levelManager')
+-- Import levels
+level_1 = require('levels/level_1')
 
 -- Initialize debugger math helper
 debugger.fpsMath()
@@ -27,8 +27,8 @@ function love.load()
   spriteManager.Load()
   audioManager.Load()
 
-  -- Initialize level 1
-  levelManager.Load(500, 0.05)
+  -- Initialize levels
+  level_1.Load(500, 0.05)
 end
 
 -- Love2D Key press check
@@ -67,10 +67,10 @@ function love.update(dt)
   shack:update(dt)
 
   -- Update sprites
-  spriteManager.Update(dt)
+  -- spriteManager.Update(dt)
 
-  -- Level 1 update
-  levelManager.Update(dt)
+  -- Levels update
+  level_1.Update(dt)
 end
 
 -- Love2D Draw
@@ -79,10 +79,10 @@ function love.draw()
   shack:apply()
 
   -- Draw sprites
-  spriteManager.Draw()
+  -- spriteManager.Draw()
 
-  -- Level 1 draw
-  levelManager.Draw()
+  -- Levels draw
+  level_1.Draw()
 
   -- Draw Debug Graph
   -- MUST be last to make top layer
