@@ -66,9 +66,6 @@ function love.update(dt)
   -- Shack update
   shack:update(dt)
 
-  -- Update sprites
-  -- spriteManager.Update(dt)
-
   -- Levels update
   level_1.Update(dt)
 end
@@ -77,9 +74,6 @@ end
 function love.draw()
   -- Draw shack
   shack:apply()
-
-  -- Draw sprites
-  -- spriteManager.Draw()
 
   -- Levels draw
   level_1.Draw()

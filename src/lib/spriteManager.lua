@@ -28,12 +28,4 @@ function spriteManager.Load()
   spriteManager.sprites.backgrounds.level_1 = love.graphics.newImage("assets/sprites/background_road.png")
 end
 
--- function spriteManager.Update(dt)
-  
--- end
-
--- function spriteManager.Draw()
-
--- end
-
 return spriteManager
