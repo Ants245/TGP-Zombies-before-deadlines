@@ -5,6 +5,7 @@ debugger = require('lib/debugger')
 -- Managers
 spriteManager = require('lib/managers/spriteManager')
 audioManager = require('lib/managers/audioManager')
+overlayManager = require('lib/managers/overlayManager')
 
 -- Import levels
 level_1 = require('levels/level_1')
@@ -23,6 +24,7 @@ function love.load()
   -- Initialize assets
   spriteManager.Load()
   audioManager.Load()
+  overlayManager.Load()
 
   -- Initialize levels
   level_1.Load(500, 0.05)
@@ -60,6 +62,9 @@ function love.update(dt)
 
   -- Levels update
   level_1.Update(dt)
+
+  -- Update overlay
+  overlayManager.Update(dt)
 end
 
 -- Love2D Draw
@@ -69,6 +74,9 @@ function love.draw()
 
   -- Levels draw
   level_1.Draw()
+
+  -- Draw overlay
+  overlayManager.Draw()
 
   -- Draw Debug Graph
   -- MUST be last to make top layer
