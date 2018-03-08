@@ -1,6 +1,7 @@
 -- Imports
 levelManager = require('lib/managers/levelManager')
 spriteManager = require('lib/managers/spriteManager')
+overlayManager = require('lib/managers/overlayManager')
 
 level_1 = {}
 
@@ -12,6 +13,9 @@ end
 function level_1.Update(dt)
   -- Update level manager
   levelManager.Update(dt)
+
+  -- Update overlay
+  overlayManager.Update(dt)
 end
 
 function DrawBackground(posX, posY)
@@ -28,6 +32,9 @@ function level_1.Draw()
 
   -- Draw level manager
   levelManager.Draw()
+
+  -- Draw overlay
+  overlayManager.Draw()
 end
 
 return level_1
