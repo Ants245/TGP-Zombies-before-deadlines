@@ -54,6 +54,9 @@ function love.update(dt)
 
   -- Levels update
   level_1.Update(dt)
+
+  -- Update overlay
+  overlayManager.Update(dt)
 end
 
 -- Love2D Draw
