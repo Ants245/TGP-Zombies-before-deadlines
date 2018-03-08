@@ -103,6 +103,14 @@ function FinishlineCollision()
   end
 end
 
+function levelManager.GetNumZombies()
+    return numZombies
+end
+
+function levelManager.GetNumZombiesLeft()
+    return numZombiesLeft
+end
+
 ----------------------------------------
 -- Update methods
 ----------------------------------------
@@ -166,9 +174,6 @@ function levelManager.Draw()
 
     playerManager.Draw(mouseX, mouseY)
     zombieManager.Draw()
-
-    -- Draw score/zombies left text
-    love.graphics.print(numZombies .. " / " .. numZombiesLeft, 980,20, 0,2)
 
     -- Set background color
     love.graphics.setColor(255, 255, 255, 255) 
