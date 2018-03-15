@@ -1,23 +1,50 @@
--- Imports
 levelManager = require('lib/managers/levelManager')
 spriteManager = require('lib/managers/spriteManager')
 overlayManager = require('lib/managers/overlayManager')
+screen = require('plugins/Screen')
 
 level_1 = {}
 
-function level_1.Load(numZombieSpawn, bulletFireRate)
-  -- Load level manager
-  levelManager.Load(numZombieSpawn, bulletFireRate)
+-- Number of zombies to spawn
+local numZombieSpawn = 500
+
+-- Bullet fire rate
+local bulletFireRate = 0.05
+
+----------------------------------------
+-- Create new screen
+----------------------------------------
+function level_1.new()
+    local self = screen.new()
+
+    -- Initialize level
+    levelManager.Load(numZombieSpawn, bulletFireRate)
+
+    function self:update(dt)
+        level_1.Update(dt)
+    end
+
+    function self:draw()
+        level_1.Draw()
+    end
+
+    return self
 end
 
+----------------------------------------
+-- Update method
+----------------------------------------
 function level_1.Update(dt)
-  -- Update level manager
-  levelManager.Update(dt)
+    -- Update level manager
+    levelManager.Update(dt)
 
-  -- Update overlay
-  overlayManager.Update(dt)
+    -- Update overlay
+    overlayManager.Update(dt)
 end
 
+----------------------------------------
+-- Draw background image
+----------------------------------------
 function DrawBackground(posX, posY)
   -- Set sprite wrap mode to repeat(tile)
   spriteManager.sprites.backgrounds.level_1:setWrap("mirroredrepeat", "mirroredrepeat")
@@ -26,6 +53,9 @@ function DrawBackground(posX, posY)
   love.graphics.draw(spriteManager.sprites.backgrounds.level_1, posX, posY)
 end
 
+----------------------------------------
+-- Draw method
+----------------------------------------
 function level_1.Draw()
   -- Draw background image
   DrawBackground()

@@ -5,11 +5,8 @@ debugger = require('lib/debugger')
 -- Managers
 spriteManager = require('lib/managers/spriteManager')
 audioManager = require('lib/managers/audioManager')
+overlayManager = require('lib/managers/overlayManager')
 screenManager = require('lib/managers/screenManager')
-
--- Import screens
-mainMenu = require('screens/mainMenu')
-level_1 = require('screens/level_1')
 
 -- Initialize debugger math helper
 debugger.fpsMath()
@@ -27,10 +24,6 @@ function love.load()
 
   -- Initialize debug graph
   debugger.Load()
-
-  -- Initialize screens
-  mainMenu.Load()
-  level_1.Load(500, 0.05)
 end
 
 -- Love2D Key press check
@@ -38,19 +31,19 @@ function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
 
-  mainMenu.KeyPressed(key)
+  screenManager.KeyPressed(key)
 
   if (key == "f") then
     shack:setShake(20)
   end
 
-  if (key == "1") then
+  if (key == "p") then
     audioManager.Play(audioManager.sounds.ui.click1)
   end
 end
 
 function love.mousepressed(x, y, button)
-  mainMenu.MousePressed(x, y, button)
+  -- mainMenu.MousePressed(x, y, button)
   levelManager.MousePressed(x, y, button)
 end
 
@@ -59,9 +52,8 @@ function love.update(dt)
   -- Shack update
   shack:update(dt)
 
-  -- Screens update
-  mainMenu.Update(dt)
-  level_1.Update(dt)
+  -- Screen manager update
+  screenManager.Update(dt)
 
   -- Debug graph update
   debugger.Update(dt)
@@ -72,8 +64,8 @@ function love.draw()
   -- Draw shack
   shack:apply()
 
-  -- Screens draw
-  mainMenu.Draw()
+  -- Screen manager draw
+  screenManager.Draw()
 
   -- Draw Debug Graph
   -- MUST be last to make top layer

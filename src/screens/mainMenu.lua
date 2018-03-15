@@ -1,27 +1,39 @@
-screenManager = require('lib/managers/screenManager')
+screen = require('plugins/Screen')
 
 mainMenu = {}
 
-function mainMenu.Load()
-    screenManager.Load()
-end
+local x, y, w, h = 20, 20, 40, 20
 
-function mainMenu.KeyPressed(key)
-    if(key == 't') then
-        screenManager.SwitchState('screens/level_1')
+----------------------------------------
+-- Create new screen
+----------------------------------------
+function mainMenu.new()
+    local self = screen.new()
+
+    function self:update(dt)
+        mainMenu.Update(dt)
     end
+
+    function self:draw()
+        mainMenu.Draw()
+    end
+
+    return self
 end
 
-function mainMenu.MousePressed(x, y, button)
-
-end
-
+----------------------------------------
+-- Update method
+----------------------------------------
 function mainMenu.Update(dt)
-
+    w = w + 2
+    h = h + 1
 end
 
+----------------------------------------
+-- Draw method
+----------------------------------------
 function mainMenu.Draw()
-    
+    love.graphics.rectangle('fill', x, y, w, h)
 end
 
 return mainMenu
