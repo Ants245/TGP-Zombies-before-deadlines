@@ -5,6 +5,7 @@ debugger = require('lib/debugger')
 -- Managers
 spriteManager = require('lib/managers/spriteManager')
 audioManager = require('lib/managers/audioManager')
+fontManager = require('lib/managers/fontManager')
 overlayManager = require('lib/managers/overlayManager')
 screenManager = require('lib/managers/screenManager')
 
@@ -21,6 +22,7 @@ function love.load()
   -- Initialize assets
   spriteManager.Load()
   audioManager.Load()
+  fontManager.Load()
   overlayManager.Load()
   screenManager.Load()
 
