@@ -12,7 +12,9 @@ function debugger.fpsMath()
   end
 end
 
--- Initialization
+----------------------------------------
+-- Debugger Initialization
+----------------------------------------
 function debugger.Load()
   log.info("[INIT]: Loading debugger...")
 
@@ -22,6 +24,9 @@ function debugger.Load()
   dtGraph = debugGraph:new('custom', 10, 70, 335)
 end
 
+----------------------------------------
+-- Debugger Key press check
+----------------------------------------
 function debugger.keypressed(key, debugKey)
   if (key == debugKey) then
     log.info("[DEBUGGER]: Toggling debug graph")
@@ -29,6 +34,9 @@ function debugger.keypressed(key, debugKey)
   end
 end
 
+----------------------------------------
+-- Debugger Update
+----------------------------------------
 function debugger.Update(dt)
   -- Update the graphs
   fpsGraph:update(dt)
@@ -39,6 +47,9 @@ function debugger.Update(dt)
   dtGraph.label = 'DT: ' ..  math.round(dt, 4)
 end
 
+----------------------------------------
+-- Debugger Draw
+----------------------------------------
 function debugger.Draw()
   if(doDrawDebug == true) then
     fpsGraph:draw()

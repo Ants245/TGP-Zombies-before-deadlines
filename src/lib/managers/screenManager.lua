@@ -3,7 +3,7 @@ manager = require('plugins/ScreenManager')
 screenManager = {}
 
 ----------------------------------------
--- Initializtion method
+-- Screen Manager Initializtion
 ----------------------------------------
 function screenManager.Load()
     -- Table of all screens to load
@@ -16,6 +16,9 @@ function screenManager.Load()
     manager.init(screens, 'main')
 end
 
+----------------------------------------
+-- Screen Manager Key press check
+----------------------------------------
 function screenManager.KeyPressed(key)
     if(key == "1")then
         manager.switch('level_1')
@@ -29,14 +32,14 @@ function screenManager.KeyPressed(key)
 end
 
 ----------------------------------------
--- Update method
+-- Screen Manager Update
 ----------------------------------------
 function screenManager.Update(dt)
     manager.update(dt)
 end
 
 ----------------------------------------
--- Draw method
+-- Screen Manager Draw
 ----------------------------------------
 function screenManager.Draw()
     manager.draw()

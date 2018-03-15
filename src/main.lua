@@ -11,7 +11,9 @@ screenManager = require('lib/managers/screenManager')
 -- Initialize debugger math helper
 debugger.fpsMath()
 
+----------------------------------------
 -- Love2D Initialization
+----------------------------------------
 function love.load()
   -- Initialize Shack to game window dimensions
   shack:setDimensions(love.graphics.getDimensions())
@@ -26,7 +28,9 @@ function love.load()
   debugger.Load()
 end
 
+----------------------------------------
 -- Love2D Key press check
+----------------------------------------
 function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
@@ -42,12 +46,17 @@ function love.keypressed(key)
   end
 end
 
+----------------------------------------
+-- Love2D Mouse press check
+----------------------------------------
 function love.mousepressed(x, y, button)
   -- mainMenu.MousePressed(x, y, button)
   levelManager.MousePressed(x, y, button)
 end
 
+----------------------------------------
 -- Love2D Update
+----------------------------------------
 function love.update(dt)
   -- Shack update
   shack:update(dt)
@@ -59,7 +68,9 @@ function love.update(dt)
   debugger.Update(dt)
 end
 
+----------------------------------------
 -- Love2D Draw
+----------------------------------------
 function love.draw()
   -- Draw shack
   shack:apply()

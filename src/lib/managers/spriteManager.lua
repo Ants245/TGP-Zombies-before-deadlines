@@ -7,7 +7,9 @@ spriteManager.sprites.weapons = {}
 spriteManager.sprites.ui = {}
 spriteManager.sprites.backgrounds = {}
 
--- Load sprites
+----------------------------------------
+-- Sprite Manager Initializtion
+----------------------------------------
 function spriteManager.Load()
   log.info("[INIT]: Loading sprites...")
 

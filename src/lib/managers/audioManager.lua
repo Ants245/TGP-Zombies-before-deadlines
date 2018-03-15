@@ -5,7 +5,9 @@ audioManager.sounds = {}
 audioManager.sounds.ui = {}
 audioManager.sounds.voiceover = {}
 
--- Load sounds
+----------------------------------------
+-- Audio Initialization
+----------------------------------------
 function audioManager.Load()
   log.info("[INIT]: Loading audio...")
 
@@ -25,7 +27,9 @@ function audioManager.Load()
   audioManager.sounds.voiceover.five = love.audio.newSource("assets/sounds/voiceover/5.ogg")
 end
 
--- Play sound
+----------------------------------------
+-- Utility Methods
+----------------------------------------
 function audioManager.Play(path)
   love.audio.play(path)
 end

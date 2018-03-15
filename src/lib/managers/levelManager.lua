@@ -10,7 +10,7 @@ local playerFrames = {}
 levelManager = {}
 
 ----------------------------------------
--- Initializtion methods
+-- Level Manager Initializtion
 ----------------------------------------
 function levelManager.Load(numZombieSpawn, bulletFireRate)
     log.info("[INIT]: Loading level manager...")
@@ -55,7 +55,7 @@ function levelManager.Load(numZombieSpawn, bulletFireRate)
 end
 
 ----------------------------------------
--- Device input methods
+-- Level Manager Key press check
 ----------------------------------------
 function levelManager.KeyPressed(key)
     -- Close the game if the escape key is pressed
@@ -64,13 +64,16 @@ function levelManager.KeyPressed(key)
     end
 end
 
+----------------------------------------
+-- Level Manager Mouse press check
+----------------------------------------
 function levelManager.MousePressed(x, y, button)
     mouseX = love.mouse.getX()
     mouseY = love.mouse.getY()
 end
 
 ----------------------------------------
--- Utility methods
+-- Level Manager Utility methods
 ----------------------------------------
 function CreateBullet(x,y)
   if love.timer.getTime() > timeLastBullet + bulletRPM then
@@ -115,7 +118,7 @@ function levelManager.GetNumZombiesLeft()
 end
 
 ----------------------------------------
--- Update methods
+-- Level Manager Update methods
 ----------------------------------------
 function UpdateBullets(dt)
     if love.mouse.isDown(1)  then   
@@ -171,7 +174,7 @@ function levelManager.Update(dt)
 end
 
 ----------------------------------------
--- Draw methods
+-- Level Manager Draw methods
 ----------------------------------------
 function levelManager.Draw()
 

@@ -5,7 +5,7 @@ log = require('plugins/Log')
 player = {}
 
 ----------------------------------------
--- Core methods
+-- Player Manager Initializtion
 ----------------------------------------
 function player.Load(playerFrames)
     log.info("[INIT]: Loading player data...")
@@ -24,6 +24,9 @@ function player.Load(playerFrames)
     playerVector = Vector.Vector2D(100,100)
 end
 
+----------------------------------------
+-- Player Manager Update
+----------------------------------------
 function player.Update(dt)
     if love.keyboard.isDown("w") then
         playerManager.GetPlayerVector():setY(playerManager.GetPlayerVector():getY() - 4.2) -- Move Up
@@ -42,13 +45,16 @@ function player.Update(dt)
     end
 end
 
+----------------------------------------
+-- Player Manager Draw
+----------------------------------------
 function player.Draw(mouseX, mouseY)
     local playerAngle = math.atan2(mouseY - playerManager.GetPlayerVector():getY(), mouseX - playerManager.GetPlayerVector():getX()) + (math.pi/2)
     love.graphics.draw(Player, activeFrame, playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY(), playerAngle)
 end
 
 ----------------------------------------
--- Getters and setters
+-- Player Manager Utility Methods
 ----------------------------------------
 function player.GetPlayerVector()
     return playerVector

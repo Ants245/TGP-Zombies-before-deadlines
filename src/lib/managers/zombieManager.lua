@@ -3,7 +3,7 @@ log = require('plugins/Log')
 zombie = {}
 
 ----------------------------------------
--- Core methods
+-- Zombie Manager Initializtion
 ----------------------------------------
 function zombie.Load(numZombies)
     log.info("[INIT]: Loading zombie data...")
@@ -55,6 +55,7 @@ function zombie.Load(numZombies)
 end
 
 ------------------------------------------------------------
+-- Zombie Manager Update
 -- Table of enemys not tracking properly, they move in one direction 
 -- (using the same method as the single tracking object that uses 2D vectors)
 -------------------------------------------------------------
@@ -98,15 +99,14 @@ function zombie.Update(dt)
     end
 end
 
+----------------------------------------
+-- Zombie Manager Draw
+----------------------------------------
 function zombie.Draw()
     for i, b in pairs(Enemy) do 
         local angle = math.atan2(playerManager.GetPlayerVector():getY() - b.y, playerManager.GetPlayerVector():getX() - b.x)
         love.graphics.draw(b.image, b.x, b.y, angle,1,1, b.image:getWidth()/2, b.image:getHeight()/2)
     end
 end
-
-----------------------------------------
--- Getters and setters
-----------------------------------------
 
 return zombie
