@@ -9,7 +9,7 @@ spriteManager.sprites.backgrounds = {}
 
 -- Load sprites
 function spriteManager.Load()
-  log.info("[INIT]: Loading sprites")
+  log.info("[INIT]: Loading sprites...")
 
   -- Entities
   spriteManager.sprites.entities.player = love.graphics.newImage("assets/sprites/entities/player/playerSpritesheet.png")

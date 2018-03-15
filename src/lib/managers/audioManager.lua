@@ -7,7 +7,7 @@ audioManager.sounds.voiceover = {}
 
 -- Load sounds
 function audioManager.Load()
-  log.info("[INIT]: Loading sounds")
+  log.info("[INIT]: Loading audio...")
 
   -- Set window volume to 100%
   love.audio.setVolume(1)

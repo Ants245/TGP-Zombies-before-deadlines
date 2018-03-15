@@ -1,9 +1,10 @@
 levelManager = require('lib/managers/levelManager')
+log = require('plugins/Log')
 
 overlayManager = {}
 
 function overlayManager.Load()
-    
+    log.info("[INIT]: Loading overlay...")
 end
 
 function overlayManager.KeyPressed(key)

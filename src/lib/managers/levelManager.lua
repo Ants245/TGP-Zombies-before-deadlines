@@ -2,6 +2,7 @@
 spriteManager = require('lib/managers/spriteManager')
 playerManager = require('lib/managers/playerManager')
 zombieManager = require('lib/managers/zombieManager')
+log = require('plugins/Log')
 
 local bulletRPM, numZombies, mouseX, mouseY, shot, elapsedTime
 local playerFrames = {}
@@ -12,6 +13,8 @@ levelManager = {}
 -- Initializtion methods
 ----------------------------------------
 function levelManager.Load(numZombieSpawn, bulletFireRate)
+    log.info("[INIT]: Loading level manager...")
+
     -- Load crosshair
     target = spriteManager.sprites.ui.crosshair
 

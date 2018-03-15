@@ -1,5 +1,6 @@
 -- Imports
 Vector = require("lib/vector")
+log = require('plugins/Log')
 
 player = {}
 
@@ -7,6 +8,8 @@ player = {}
 -- Core methods
 ----------------------------------------
 function player.Load(playerFrames)
+    log.info("[INIT]: Loading player data...")
+
     activeFrame = 0
     currentFrame = 01
 

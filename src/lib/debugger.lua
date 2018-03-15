@@ -14,7 +14,7 @@ end
 
 -- Initialization
 function debugger.Load()
-  log.info("[INIT]: Loading debugger")
+  log.info("[INIT]: Loading debugger...")
 
   doDrawDebug = false
   fpsGraph = debugGraph:new('fps', 10, 10, 335)

@@ -1,4 +1,5 @@
 screen = require('plugins/Screen')
+log = require('plugins/Log')
 
 mainMenu = {}
 
@@ -9,6 +10,8 @@ local x, y, w, h = 20, 20, 40, 20
 ----------------------------------------
 function mainMenu.new()
     local self = screen.new()
+
+    log.info("[INIT]: Loading main menu...")
 
     function self:update(dt)
         mainMenu.Update(dt)

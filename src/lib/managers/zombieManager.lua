@@ -1,9 +1,13 @@
+log = require('plugins/Log')
+
 zombie = {}
 
 ----------------------------------------
 -- Core methods
 ----------------------------------------
 function zombie.Load(numZombies)
+    log.info("[INIT]: Loading zombie data...")
+
     zombie = spriteManager.sprites.entities.zombie
     zombieRun = spriteManager.sprites.entities.zombieFast
 
