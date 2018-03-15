@@ -38,6 +38,7 @@ function love.keypressed(key)
   debugger.keypressed(key, "f12")
 
   screenManager.KeyPressed(key)
+  overlayManager.KeyPressed(key)
 
   if (key == "f") then
     shack:setShake(20)
@@ -52,8 +53,8 @@ end
 -- Love2D Mouse press check
 ----------------------------------------
 function love.mousepressed(x, y, button)
-  -- mainMenu.MousePressed(x, y, button)
   levelManager.MousePressed(x, y, button)
+  overlayManager.MousePressed(x, y, button)
 end
 
 ----------------------------------------

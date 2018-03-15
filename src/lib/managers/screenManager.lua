@@ -2,10 +2,15 @@ manager = require('plugins/ScreenManager')
 
 screenManager = {}
 
+-- If active screen is gameplay/level
+isGameplay = false
+
 ----------------------------------------
 -- Screen Manager Initializtion
 ----------------------------------------
 function screenManager.Load()
+    isGameplay = false
+
     -- Table of all screens to load
     local screens = {
         main = require('screens/mainMenu'),
@@ -43,6 +48,17 @@ end
 ----------------------------------------
 function screenManager.Draw()
     manager.draw()
+end
+
+----------------------------------------
+-- Screen Manager Utility methods
+----------------------------------------
+function screenManager.SetIsGameplay(setIsGameplay)
+    isGameplay = setIsGameplay
+end
+
+function screenManager.GetIsGameplay()
+    return isGameplay
 end
 
 return screenManager

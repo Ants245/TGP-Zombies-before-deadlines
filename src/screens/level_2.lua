@@ -1,6 +1,7 @@
 levelManager = require('lib/managers/levelManager')
 spriteManager = require('lib/managers/spriteManager')
 overlayManager = require('lib/managers/overlayManager')
+screenManager = require('lib/managers/screenManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
 
@@ -19,6 +20,8 @@ function level_2.new()
     local self = screen.new()
 
     log.info("[INIT]: Loading level 2...")
+
+    screenManager.SetIsGameplay(true)
 
     -- Initialize level
     levelManager.Load(numZombieSpawn, bulletFireRate)
