@@ -105,7 +105,7 @@ end
 function zombie.Draw()
     for i, b in pairs(Enemy) do 
         local angle = math.atan2(playerManager.GetPlayerVector():getY() - b.y, playerManager.GetPlayerVector():getX() - b.x)
-        love.graphics.draw(b.image, b.x, b.y, angle,1,1, b.image:getWidth()/2, b.image:getHeight()/2)
+        love.graphics.draw(b.image, b.x, b.y, angle, 0.5, 0.5, b.image:getWidth()/2, b.image:getHeight()/2)
     end
 end
 
