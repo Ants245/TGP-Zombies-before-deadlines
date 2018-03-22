@@ -36,7 +36,9 @@ end
 -- Draw method
 ----------------------------------------
 function pauseMenu.Draw()
-    -- love.graphics.rectangle('fill', 0, 0, 1280, 720)
+    love.graphics.setColor(0, 0, 0, 10)
+    love.graphics.rectangle('fill', 0, 0, 1280, 720)
+    love.graphics.setColor(255, 255, 255, 255)
 end
 
 return pauseMenu
