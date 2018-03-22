@@ -19,11 +19,7 @@ end
 -- Overlay Manager Key press check
 ----------------------------------------
 function overlayManager.KeyPressed(key)
-    if(screenManager.GetIsGameplay() == true) then
-        if(key == "escape") then
-            log.info("Toggling Pause menu")
-        end
-    end
+    
 end
 
 ----------------------------------------

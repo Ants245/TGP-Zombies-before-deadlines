@@ -21,6 +21,8 @@ function player.Load(playerFrames)
     playerFrames[5] = love.graphics.newQuad(56, 25, 14, 23, Player:getDimensions())
     activeFrame = playerFrames[currentFrame]
 
+    playerRotationAngle = 0
+
     playerVector = Vector.Vector2D(100,100)
 end
 
@@ -43,14 +45,15 @@ function player.Update(dt)
     if love.keyboard.isDown("d") then
         playerManager.GetPlayerVector():setX(playerManager.GetPlayerVector():getX() + 4.2) -- Move Right
     end
+
+    playerRotationAngle = math.atan2(love.mouse.getY() - playerManager.GetPlayerVector():getY(), love.mouse.getX() - playerManager.GetPlayerVector():getX()) + (math.pi/2)
 end
 
 ----------------------------------------
 -- Player Manager Draw
 ----------------------------------------
-function player.Draw(mouseX, mouseY)
-    local playerAngle = math.atan2(mouseY - playerManager.GetPlayerVector():getY(), mouseX - playerManager.GetPlayerVector():getX()) + (math.pi/2)
-    love.graphics.draw(Player, activeFrame, playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY(), playerAngle)
+function player.Draw()
+    love.graphics.draw(Player, activeFrame, playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY(), playerRotationAngle)
 end
 
 ----------------------------------------

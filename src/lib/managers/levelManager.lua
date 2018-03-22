@@ -148,12 +148,6 @@ function UpdateBullets(dt)
 end
 
 function levelManager.Update(dt)
-    for i, b in pairs(bullets) do
-        --b.x = b.x + b.dir * b.speed * dt
-        b.x = b.x + (b.DirX * 15)
-        b.y = b.y + (b.DirY* 15)
-    end
-
     currentFrameTime = currentFrameTime + dt
     if(currentFrameTime > speedDecresTime) then
         if(speedX > 0) then
@@ -168,9 +162,17 @@ function levelManager.Update(dt)
     mouseX = love.mouse.getX()
     mouseY = love.mouse.getY()
 
-    playerManager.Update(dt)
-    zombieManager.Update(dt)
-    UpdateBullets(dt)
+    if(screenManager.GetIsPaused() == false) then
+        playerManager.Update(dt)
+        zombieManager.Update(dt)
+        UpdateBullets(dt)
+
+        -- Pause bullet movement
+        for i, b in pairs(bullets) do
+            b.x = b.x + (b.DirX * 15)
+            b.y = b.y + (b.DirY* 15)
+        end
+    end
 end
 
 ----------------------------------------
@@ -178,7 +180,7 @@ end
 ----------------------------------------
 function levelManager.Draw()
 
-    playerManager.Draw(mouseX, mouseY)
+    playerManager.Draw()
     zombieManager.Draw()
 
     -- Set background color
