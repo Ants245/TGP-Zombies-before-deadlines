@@ -37,23 +37,14 @@ function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
 
-  screenManager.KeyPressed(key)
   overlayManager.KeyPressed(key)
-
-  if (key == "f") then
-    shack:setShake(20)
-  end
-
-  if (key == "p") then
-    audioManager.Play(audioManager.sounds.ui.click1)
-  end
+  screenManager.KeyPressed(key)
 end
 
 ----------------------------------------
 -- Love2D Mouse press check
 ----------------------------------------
 function love.mousepressed(x, y, button)
-  levelManager.MousePressed(x, y, button)
   overlayManager.MousePressed(x, y, button)
 end
 
