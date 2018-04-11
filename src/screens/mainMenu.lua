@@ -1,4 +1,3 @@
-screenManager = require('lib/managers/screenManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
 
@@ -13,8 +12,6 @@ function mainMenu.new()
     local self = screen.new()
 
     log.info("[INIT]: Loading main menu...")
-
-    screenManager.SetIsGameplay(false)
 
     function self:update(dt)
         mainMenu.Update(dt)

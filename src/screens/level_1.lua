@@ -1,17 +1,16 @@
 levelManager = require('lib/managers/levelManager')
 spriteManager = require('lib/managers/spriteManager')
 overlayManager = require('lib/managers/overlayManager')
-screenManager = require('lib/managers/screenManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
 
 level_1 = {}
 
 -- Number of zombies to spawn
-local numZombieSpawn = 500
+local slowZombieNum = 200
+local fastZombieNum = 10
+local largeZombieNum = 10
 
--- Bullet fire rate
-local bulletFireRate = 0.05
 
 ----------------------------------------
 -- Create new screen
@@ -21,10 +20,8 @@ function level_1.new()
 
     log.info("[INIT]: Loading level 1...")
 
-    screenManager.SetIsGameplay(true)
-
     -- Initialize level
-    levelManager.Load(numZombieSpawn, bulletFireRate)
+    levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
 
     function self:update(dt)
         level_1.Update(dt)
