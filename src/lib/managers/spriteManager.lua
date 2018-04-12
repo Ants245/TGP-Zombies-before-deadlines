@@ -30,6 +30,9 @@ function spriteManager.Load()
   spriteManager.sprites.ui.red = love.graphics.newImage(assetsSpritesPath .. "ui/redSheet.png")
   spriteManager.sprites.ui.green = love.graphics.newImage(assetsSpritesPath .. "ui/greenSheet.png")
   spriteManager.sprites.ui.blue = love.graphics.newImage(assetsSpritesPath .. "ui/blueSheet.png")
+  spriteManager.sprites.ui.ammoPickup = love.graphics.newImage(assetsSpritesPath .. "ui/ammoPickup.png")
+  spriteManager.sprites.ui.gunSelection = love.graphics.newImage(assetsSpritesPath .. "ui/gunSelection.png")
+  spriteManager.sprites.ui.healthBar = love.graphics.newImage(assetsSpritesPath .. "ui/HealthBarUI.png")
 
   -- Level background images
   spriteManager.sprites.backgrounds.level_1 = love.graphics.newImage("assets/sprites/background_road.png")

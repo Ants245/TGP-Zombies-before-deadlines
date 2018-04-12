@@ -4,6 +4,7 @@ audioManager = {}
 audioManager.sounds = {}
 audioManager.sounds.ui = {}
 audioManager.sounds.voiceover = {}
+audioManager.sounds.guns = {}
 
 local assetsSoundsPath = "assets/sounds/"
 
@@ -27,6 +28,8 @@ function audioManager.Load()
   audioManager.sounds.voiceover.three = love.audio.newSource(assetsSoundsPath .. "voiceover/3.ogg")
   audioManager.sounds.voiceover.four = love.audio.newSource(assetsSoundsPath .. "voiceover/4.ogg")
   audioManager.sounds.voiceover.five = love.audio.newSource(assetsSoundsPath .. "voiceover/5.ogg")
+
+  audioManager.sounds.guns.fire = love.audio.newSource(assetsSoundsPath .. "guns/pistol.mp3")
 end
 
 ----------------------------------------
