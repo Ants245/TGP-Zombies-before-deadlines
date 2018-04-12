@@ -28,6 +28,10 @@ function love.load()
 
   -- Initialize debug graph
   debugger.Load()
+
+  -- Scroll wheel
+  scrollWheelX = 0
+  scrollWheelY = 0
 end
 
 ----------------------------------------
@@ -37,15 +41,31 @@ function love.keypressed(key)
   -- Debugger graph toggle
   debugger.keypressed(key, "f12")
 
-  overlayManager.KeyPressed(key)
+  -- Overlay manage key press checks
+  overlayManager.KeyPressed(key) 
+
+  -- Screen manager key press checks
   screenManager.KeyPressed(key)
+
+  -- DEBUG: Testing screenshake/audio playing
+  -- if (key == "f") then 
+  --   shack:setShake(20) 
+  -- end 
+ 
+  -- if (key == "p") then 
+  --   audioManager.Play(audioManager.sounds.ui.click1) 
+  -- end
 end
 
 ----------------------------------------
 -- Love2D Mouse press check
 ----------------------------------------
 function love.mousepressed(x, y, button)
-  overlayManager.MousePressed(x, y, button)
+  -- Overlay manager mouse action checks
+  overlayManager.MousePressed(x, y, button) 
+
+  -- Level manager mouse action checks
+  levelManager.MousePressed(x, y, button) 
 end
 
 ----------------------------------------

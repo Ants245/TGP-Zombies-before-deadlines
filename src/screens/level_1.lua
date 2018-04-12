@@ -8,10 +8,9 @@ log = require('plugins/Log')
 level_1 = {}
 
 -- Number of zombies to spawn
-local numZombieSpawn = 500
-
--- Bullet fire rate
-local bulletFireRate = 0.05
+local slowZombieNum = 200
+local fastZombieNum = 10
+local largeZombieNum = 10
 
 ----------------------------------------
 -- Create new screen
@@ -24,7 +23,7 @@ function level_1.new()
     screenManager.SetIsGameplay(true)
 
     -- Initialize level
-    levelManager.Load(numZombieSpawn, bulletFireRate)
+    levelManager.Load(slowZombieNum, fastZombieNum, largeZombieNum)
 
     function self:update(dt)
         level_1.Update(dt)
