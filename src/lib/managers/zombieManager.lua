@@ -5,7 +5,7 @@ zombieManager = {}
 ----------------------------------------
 -- Zombie Manager Initializtion
 ----------------------------------------
-function zombieManager.Load(numZombies)
+function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     log.info("[INIT]: Loading zombie data...")
 
     zombie = spriteManager.sprites.entities.zombie
