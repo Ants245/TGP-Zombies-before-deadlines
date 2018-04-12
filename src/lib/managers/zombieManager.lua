@@ -9,24 +9,24 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     log.info("[INIT]: Loading zombie data...")
 
     zombie = spriteManager.sprites.entities.zombie
-    zombieRun = spriteManager.sprites.entities.zombieFast
-    largeZombie = spriteManager.sprites.entities.zombieLarge
+    zombieFast = spriteManager.sprites.entities.zombieFast
+    zombieFat = spriteManager.sprites.entities.zombieFat
 
     Enemy = {}
 
     for i=0,slowZombieNum do
-        CreateEnemy(2,zombie,1,10)
+        CreateEnemy(2, zombie, 1, 10)
     end
 
     for i=0,fastZombieNum do
-        CreateEnemy(5,zombieRun,1,8)
+        CreateEnemy(5, zombieFast, 1, 8)
     end  
 
     for i=0,largeZombieNum do
-        CreateEnemy(1.5,largeZombie,4,1)
+        CreateEnemy(1.5, zombieFat, 4, 1)
     end
 
-    wheelx = 10
+    scrollWheelX = 10
 end
 
 ----------------------------------------
@@ -155,7 +155,7 @@ function zombieManager.Draw()
         local angle = math.atan2(playerManager.GetPlayerVector():getY() - b.y, playerManager.GetPlayerVector():getX() - b.x)
         love.graphics.draw(b.image, b.x, b.y, angle,1,1, b.image:getWidth()/2, b.image:getHeight()/2)
     end
-    love.graphics.print(wheelx,40,20)
+    love.graphics.print(scrollWheelX,40,20)
 end
 
 return zombieManager
