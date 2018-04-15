@@ -25,7 +25,6 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     for i=0,largeZombieNum do
         CreateEnemy(1.5, zombieFat, 4, 1)
     end
-
 end
 
 ----------------------------------------
@@ -154,6 +153,7 @@ function zombieManager.Draw()
         local angle = math.atan2(playerManager.GetPlayerVector():getY() - b.y, playerManager.GetPlayerVector():getX() - b.x)
         love.graphics.draw(b.image, b.x, b.y, angle,1,1, b.image:getWidth()/2, b.image:getHeight()/2)
     end
+    love.graphics.print(scrollWheelX,40,20)
 end
 
 return zombieManager

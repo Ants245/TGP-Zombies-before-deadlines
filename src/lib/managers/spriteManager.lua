@@ -25,7 +25,7 @@ function spriteManager.Load()
   spriteManager.sprites.weapons.shotgun = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_shotgun.png")
   spriteManager.sprites.weapons.pistol = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_pistol.png")
   spriteManager.sprites.weapons.tempGunSelection = love.graphics.newImage(assetsSpritesPath .. "weapons/TempGunSelection.png") 
-  spriteManager.sprites.weapons.bullet = love.graphics.newImage(assetsSpritesPath .. "weapons/bullet.png") 
+  spriteManager.sprites.weapons.bullet = love.graphics.newImage(assetsSpritesPath .. "weapons/bullet.png")
 
   -- UI spritesheets
   spriteManager.sprites.ui.crosshair = love.graphics.newImage(assetsSpritesPath .. "crosshair.png")

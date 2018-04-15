@@ -12,7 +12,7 @@ gunManager = {}
 ----------------------------------------
 -- Gun Manager Initializtion
 ----------------------------------------
-function gunManager.Load()
+function gunManager.Load(gunSelect)
   log.info("[INIT]: Loading Gun manager...")
 
   -- Load crosshair
@@ -33,8 +33,8 @@ function gunManager.Load()
   Guns = {}
   reloadAmmoStore = 0
   reloadRepeat = 0
-
   reloading = false
+  
   timeSinceStart = love.timer.getTime()
   timeBetweenReload = 2.0
 
@@ -93,6 +93,7 @@ end
 function magLoad()
   CurrentGun.mag = CurrentGun.mag + reloadAmmoStore
   reloadAmmoStore = 0
+  
   --while(GunMag < (CurrentGun.magSize - GunMag)) do
   for i = 1, (CurrentGun.magSize - CurrentGun.mag) do
     if CurrentGun.ammo > 0 then
@@ -112,7 +113,6 @@ end
 
 function gunManager.ChangeGun(gun)
   CurrentGun = Guns[gun]
-
   if gun == 0 then
     gunSelectedX = 460
   end
@@ -221,15 +221,14 @@ function gunManager.Update(dt)
   UpdateBullets(dt)
   BulletCollision()
   DropCollision()
-
+  
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
-
+  
   for i, b in pairs(bullets) do
     b.x = b.x + (b.DirX * 15)
     b.y = b.y + (b.DirY* 15)
   end
-
   gunManager.ChangeGun(scrollWheelX)
 end
 
@@ -292,7 +291,7 @@ function TEMPHOLD()
       end
     end
   else   
-    while(GunMag < CurrentGun.magSize) do 
+    while(GunMag < CurrentGun.magSize) do
       GunMag = GunMag + reloadAmmoStore
       reloadAmmoStore = 0
       if Ammo > 0 then

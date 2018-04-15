@@ -24,7 +24,7 @@ function levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
 
     -- Initialize Player
     playerManager.Load(playerFrames)
-    gunManager.Load() 
+    gunManager.Load(gunSelect) 
 
     -- Initialize Zombies
     zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum) 
