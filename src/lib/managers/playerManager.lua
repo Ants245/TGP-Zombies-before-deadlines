@@ -119,4 +119,8 @@ function playerManager.GetPlayerVector()
     return playerVector
 end
 
+function playerManager.GetPlayerHealth()
+    return playerHealth
+end
+
 return playerManager

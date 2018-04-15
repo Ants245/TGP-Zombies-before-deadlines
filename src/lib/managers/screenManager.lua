@@ -1,4 +1,5 @@
 manager = require('plugins/ScreenManager')
+playerManager = require('lib/managers/playerManager')
 
 screenManager = {}
 
@@ -44,6 +45,10 @@ end
 ----------------------------------------
 function screenManager.Update(dt)
     manager.update(dt)
+
+    if(playerManager.GetPlayerHealth() == 0) then
+        manager.switch('gameOver')
+    end
 end
 
 ----------------------------------------
