@@ -40,7 +40,7 @@ function levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
 end
 
 ----------------------------------------
--- Level Manager Mouse press check
+-- Level Manager Mouse Press Check
 ----------------------------------------
 function levelManager.MousePressed(x, y, button)
     mouseX = love.mouse.getX()
@@ -49,7 +49,7 @@ function levelManager.MousePressed(x, y, button)
 end
 
 ----------------------------------------
--- Level Manager Utility methods
+-- Level Manager Utility Methods
 ----------------------------------------
 function levelManager.GetNumZombies()
     return numZombies
@@ -60,7 +60,7 @@ function levelManager.GetNumZombiesLeft()
 end
 
 ----------------------------------------
--- Level Manager Update methods
+-- Level Manager Update Methods
 ----------------------------------------
 function levelManager.Update(dt)
     playerManager.Update(dt)
@@ -69,7 +69,7 @@ function levelManager.Update(dt)
 end
 
 ----------------------------------------
--- Level Manager Draw methods
+-- Level Manager Draw Methods
 ----------------------------------------
 function levelManager.Draw()
     playerManager.Draw()

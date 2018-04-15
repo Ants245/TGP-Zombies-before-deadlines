@@ -28,7 +28,7 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
 end
 
 ----------------------------------------
--- Zombie Manager Utility methods
+-- Zombie Manager Utility Methods
 ----------------------------------------
 function CreateEnemy(_speed, _image, _health, _DropChance)
   local ranNumX = 0

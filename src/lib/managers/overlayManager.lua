@@ -16,14 +16,14 @@ function overlayManager.Load()
 end
 
 ----------------------------------------
--- Overlay Manager Key press check
+-- Overlay Manager Key Press Check
 ----------------------------------------
 function overlayManager.KeyPressed(key)
     
 end
 
 ----------------------------------------
--- Overlay Manager Mouse press check
+-- Overlay Manager Mouse Press Check
 ----------------------------------------
 function overlayManager.MousePressed(x, y, button)
     

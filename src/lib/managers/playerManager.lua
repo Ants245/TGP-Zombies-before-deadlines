@@ -38,7 +38,7 @@ function playerManager.Load(playerFrames)
 end
 
 ----------------------------------------
--- Player Manager Mouse press check
+-- Player Manager Mouse Press Check
 ----------------------------------------
 function playerManager.MousePressed(x, y, button) 
   mouseX = love.mouse.getX() 

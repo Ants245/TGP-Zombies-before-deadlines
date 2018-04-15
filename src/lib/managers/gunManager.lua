@@ -88,7 +88,7 @@ function gunManager.Load(gunSelect)
 end
 
 ----------------------------------------
--- Gun Manager Utility methods
+-- Gun Manager Utility Methods
 ----------------------------------------
 function magLoad()
   CurrentGun.mag = CurrentGun.mag + reloadAmmoStore
@@ -183,7 +183,7 @@ function DropCollision()
 end
 
 ----------------------------------------
--- Gun Manager Update methods
+-- Gun Manager Update Methods
 ----------------------------------------
 function UpdateBullets(dt)
   if love.mouse.isDown(1)  then 

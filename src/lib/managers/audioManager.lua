@@ -24,7 +24,7 @@ function audioManager.Load()
 end
 
 ----------------------------------------
--- Utility Methods
+-- Audio Utility Methods
 ----------------------------------------
 function audioManager.Play(path)
   love.audio.play(path)
