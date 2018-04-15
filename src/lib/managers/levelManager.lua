@@ -2,7 +2,7 @@
 spriteManager = require('lib/managers/spriteManager')
 playerManager = require('lib/managers/playerManager')
 zombieManager = require('lib/managers/zombieManager')
-gunManager    = require('lib/managers/gunManager')
+gunManager    = require('lib/managers/gunManager') 
 log = require('plugins/Log')
 
 local bulletRPM, numZombies, mouseX, mouseY, shot, elapsedTime
@@ -16,21 +16,18 @@ levelManager = {}
 function levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     log.info("[INIT]: Loading level manager...")
 
-
-    -- Sets num of zombies to spawn
-    numZombies = slowZombieNum + fastZombieNum + largeZombieNum
+    -- num of total zombies to spawn
+    numZombies = slowZombieNum + fastZombieNum + largeZombieNum 
 
     -- Initialially set number of zombies left to spawn amount
     numZombiesLeft = numZombies
 
     -- Initialize Player
     playerManager.Load(playerFrames)
+    gunManager.Load() 
 
     -- Initialize Zombies
-    zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
-    
-    --Initialize Player
-    gunManager.Load(gunSelect)
+    zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum) 
 
     -- Sets mouse to be invisible
     love.mouse.setVisible(not love.mouse.isVisible())
@@ -43,20 +40,17 @@ function levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
 end
 
 ----------------------------------------
--- Level Manager Key press check
+-- Level Manager Mouse press check
 ----------------------------------------
-function levelManager.KeyPressed(key)
-    -- Close the game if the escape key is pressed
-    if(key == "escape") then
-        love.event.quit()
-    end
-end
-
-
 function levelManager.MousePressed(x, y, button)
-    --playerManager.MousePressed(x,y,button)
+    mouseX = love.mouse.getX()
+    mouseY = love.mouse.getY()
+    playerManager.MousePressed(x,y,button) 
 end
 
+----------------------------------------
+-- Level Manager Utility methods
+----------------------------------------
 function levelManager.GetNumZombies()
     return numZombies
 end
@@ -68,9 +62,7 @@ end
 ----------------------------------------
 -- Level Manager Update methods
 ----------------------------------------
-
 function levelManager.Update(dt)
-
     playerManager.Update(dt)
     zombieManager.Update(dt)
     gunManager.Update(dt)
@@ -80,14 +72,12 @@ end
 -- Level Manager Draw methods
 ----------------------------------------
 function levelManager.Draw()
-
     playerManager.Draw()
     zombieManager.Draw()
     gunManager.Draw()
 
     -- Set background color
-    love.graphics.setColor(255, 255, 255, 255) 
-
+    love.graphics.setColor(255, 255, 255, 255)
 end
 
 return levelManager

@@ -12,32 +12,36 @@ gunManager = {}
 ----------------------------------------
 -- Gun Manager Initializtion
 ----------------------------------------
-function gunManager.Load(gunSelect)
+function gunManager.Load()
   log.info("[INIT]: Loading Gun manager...")
 
   -- Load crosshair
   target = spriteManager.sprites.ui.crosshair
   ammoPickup = spriteManager.sprites.ui.ammoPickup
-  gunSelection = spriteManager.sprites.weapons.TempGunSelection
+  gunSelection = spriteManager.sprites.weapons.tempGunSelection
   gunSelected = spriteManager.sprites.ui.gunSelection
+  bullet = spriteManager.sprites.weapons.bullet
   gunSelectedX = 460
 
-  gunSound = audioManager.sounds.gun.fire
+  -- Load gun audio/set audio volume
+  gunSound = audioManager.sounds.guns.fire
   gunSound:setVolume(0.1)
 
+  -- Gun default
   Ammo = 100
   GunMag = 0
   Guns = {}
-  ReloadAmmoStore = 0
+  reloadAmmoStore = 0
   reloadRepeat = 0
 
-  reLoading = false
+  reloading = false
   timeSinceStart = love.timer.getTime()
   timeBetweenReload = 2.0
+
   for i=0,3 do
     if i == 0 then
       Guns[i] = {}
-      Guns[i].make = pistol
+      Guns[i].make = "Pistol"
       Guns[i].speed = 0.5
       Guns[i].magSize = 15
       Guns[i].damage = 1
@@ -46,7 +50,7 @@ function gunManager.Load(gunSelect)
     end
     if i == 1 then
       Guns[i] = {}
-      Guns[i].make = autoMaticRifle
+      Guns[i].make = "Assult Rifle"
       Guns[i].speed = 0.1
       Guns[i].magSize = 30
       Guns[i].damage = 1
@@ -55,7 +59,7 @@ function gunManager.Load(gunSelect)
     end
     if i == 2 then
       Guns[i] = {}
-      Guns[i].make = MiniGun
+      Guns[i].make = "Minigun"
       Guns[i].speed = 0.05
       Guns[i].magSize = 50
       Guns[i].damage = 1
@@ -80,21 +84,15 @@ function gunManager.Load(gunSelect)
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
 
-  -- Local var initialization
-
-  wheelx =0 
-
+  scrollWheelX =0 
 end
-
 
 ----------------------------------------
 -- Gun Manager Utility methods
 ----------------------------------------
-
-
 function magLoad()
-  CurrentGun.mag = CurrentGun.mag + ReloadAmmoStore
-  ReloadAmmoStore = 0
+  CurrentGun.mag = CurrentGun.mag + reloadAmmoStore
+  reloadAmmoStore = 0
   --while(GunMag < (CurrentGun.magSize - GunMag)) do
   for i = 1, (CurrentGun.magSize - CurrentGun.mag) do
     if CurrentGun.ammo > 0 then
@@ -107,35 +105,23 @@ function magLoad()
   reloadRepeat = 0
 end
 
-
 function DropAmmo(x,y)
   local n = #AmmoDrops + 1  
-  AmmoDrops[n] =
-  {
-    x = x,
-    y = y
-  }
+  AmmoDrops[n] = { x = x, y = y }
 end
 
 function gunManager.ChangeGun(gun)
-
   CurrentGun = Guns[gun]
 
   if gun == 0 then
     gunSelectedX = 460
   end
-
   if gun == 1 then
     gunSelectedX = 590
   end
-
   if gun == 2 then
     gunSelectedX = 710
   end
-
-
-
-
 end
 
 function CreateBullet(x,y)
@@ -187,7 +173,6 @@ function BulletCollision()
   end
 end
 
-
 function DropCollision()
   for i, e in pairs(AmmoDrops) do 
     if CheckCollision(playerManager.GetPlayerVector():getX(),playerManager.GetPlayerVector():getY(),14,23, e.x,e.y,20,20) == true then
@@ -197,13 +182,10 @@ function DropCollision()
   end
 end
 
-
-
 ----------------------------------------
--- Level Manager Update methods
+-- Gun Manager Update methods
 ----------------------------------------
 function UpdateBullets(dt)
-
   if love.mouse.isDown(1)  then 
     if CurrentGun.mag > 0 then
         timeSinceStart  = love.timer.getTime()
@@ -228,30 +210,27 @@ end
 function gunManager.Reload()
   if reloadRepeat == 0 then
     if GunMag < CurrentGun.magSize then
-      ReloadAmmoStore = CurrentGun.mag
+      reloadAmmoStore = CurrentGun.mag
       CurrentGun.mag = 0 
     end
   end
   reloadRepeat = 1
-
 end
 
-
-
 function gunManager.Update(dt)
-
   UpdateBullets(dt)
   BulletCollision()
   DropCollision()
+
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
+
   for i, b in pairs(bullets) do
     b.x = b.x + (b.DirX * 15)
     b.y = b.y + (b.DirY* 15)
   end
 
-  gunManager.ChangeGun(wheelx)
-
+  gunManager.ChangeGun(scrollWheelX)
 end
 
 function distanceCheck( x1, y1, x2, y2 )
@@ -262,52 +241,48 @@ end
 
 function love.wheelmoved(x, y)
   if y > 0 then
-    wheelx = wheelx - 1
-    if wheelx < 0 then
-      wheelx = 2
+    scrollWheelX = scrollWheelX - 1
+    if scrollWheelX < 0 then
+      scrollWheelX = 2
     end
   elseif y < 0 then
-    wheelx = wheelx + 1
-    if wheelx > 2 then
-      wheelx = 0
+    scrollWheelX = scrollWheelX + 1
+    if scrollWheelX > 2 then
+      scrollWheelX = 0
     end
-
   end
 end
 
 function gunManager.Draw()
   -- Draw crosshair
   love.graphics.draw(target,mouseX,mouseY,0,1,1, target:getWidth()/2, target:getHeight()/2)
-  love.graphics.print(CurrentGun.mag, 780,20, 0,2) 
-  love.graphics.print(" / " , 840, 20,0 ,2)
-  love.graphics.print(CurrentGun.ammo, 862, 20, 0,2)
-  love.graphics.print(ReloadAmmoStore,20,20)
+  love.graphics.print(CurrentGun.mag, 784,20, 0)
+  love.graphics.print(" / " , 840, 20,0 )
+  love.graphics.print(CurrentGun.ammo, 862, 20, 0)
+  love.graphics.print(reloadAmmoStore,20,20)
 
-  love.graphics.print(wheelx,20,30)
+  love.graphics.print(scrollWheelX,20,30)
 
   -- Draw bullets
   for i, b in pairs(bullets) do
-    love.graphics.rectangle("fill", b.x,b.y, 7, 7 ) -- work in progress
+    love.graphics.draw(bullet, b.x,b.y, 0, 1.7,1.0 ) -- work in progress
   end
 
   for u, j in pairs(AmmoDrops) do 
     love.graphics.draw(ammoPickup,j.x,j.y)
   end
 
-
   love.graphics.setColor(255, 255, 255, 50) -- red, green, blue, opacity (this would be white with 20% opacity)
   love.graphics.draw(gunSelected, gunSelectedX, 630)
   love.graphics.setColor(255, 255, 255)
 
-  love.graphics.draw(gunSelection, 460,625)
-
-
-
+  love.graphics.draw(gunSelection, 460, 625)
 end
+
 function TEMPHOLD()
   if Ammo < CurrentGun.magSize then
-    GunMag = GunMag + ReloadAmmoStore
-    ReloadAmmoStore = 0
+    GunMag = GunMag + reloadAmmoStore
+    reloadAmmoStore = 0
     for i = CurrentGun.magSize - GunMag, 1,1 do
       if Ammo > 0 then
         GunMag = GunMag + 1
@@ -318,8 +293,8 @@ function TEMPHOLD()
     end
   else   
     while(GunMag < CurrentGun.magSize) do 
-      GunMag = GunMag + ReloadAmmoStore
-      ReloadAmmoStore = 0
+      GunMag = GunMag + reloadAmmoStore
+      reloadAmmoStore = 0
       if Ammo > 0 then
         GunMag = GunMag + 1
         Ammo = Ammo - 1
