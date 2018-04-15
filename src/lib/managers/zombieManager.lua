@@ -25,8 +25,6 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     for i=0,largeZombieNum do
         CreateEnemy(1.5, zombieFat, 4, 1)
     end
-
-    scrollWheelX = 10
 end
 
 ----------------------------------------
