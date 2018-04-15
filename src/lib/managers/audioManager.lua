@@ -17,17 +17,8 @@ function audioManager.Load()
   -- Set window volume to 100%
   love.audio.setVolume(1)
 
-  audioManager.sounds.ui.click1 = love.audio.newSource(assetsSoundsPath .. "ui/click1.ogg")
-  audioManager.sounds.ui.click2 = love.audio.newSource(assetsSoundsPath .. "ui/click2.ogg")
-  audioManager.sounds.ui.click3 = love.audio.newSource(assetsSoundsPath .. "ui/click3.ogg")
-  audioManager.sounds.ui.click4 = love.audio.newSource(assetsSoundsPath .. "ui/click4.ogg")
-  audioManager.sounds.ui.click5 = love.audio.newSource(assetsSoundsPath .. "ui/click5.ogg")
-  
-  audioManager.sounds.voiceover.one = love.audio.newSource(assetsSoundsPath .. "voiceover/1.ogg")
-  audioManager.sounds.voiceover.two = love.audio.newSource(assetsSoundsPath .. "voiceover/2.ogg")
-  audioManager.sounds.voiceover.three = love.audio.newSource(assetsSoundsPath .. "voiceover/3.ogg")
-  audioManager.sounds.voiceover.four = love.audio.newSource(assetsSoundsPath .. "voiceover/4.ogg")
-  audioManager.sounds.voiceover.five = love.audio.newSource(assetsSoundsPath .. "voiceover/5.ogg")
+  audioManager.sounds.voiceover.begin = love.audio.newSource(assetsSoundsPath .. "voiceover/begin.ogg")
+  audioManager.sounds.voiceover.game_over = love.audio.newSource(assetsSoundsPath .. "voiceover/game_over.ogg")
 
   audioManager.sounds.guns.fire = love.audio.newSource(assetsSoundsPath .. "guns/pistol.mp3")
 end

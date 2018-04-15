@@ -1,4 +1,5 @@
 levelManager = require('lib/managers/levelManager')
+audioManager = require('lib/managers/audioManager')
 spriteManager = require('lib/managers/spriteManager')
 overlayManager = require('lib/managers/overlayManager')
 screenManager = require('lib/managers/screenManager')
@@ -21,6 +22,8 @@ function level_1.new()
     log.info("[INIT]: Loading level 1...")
 
     screenManager.SetIsGameplay(true)
+
+    audioManager.Play(audioManager.sounds.voiceover.begin)
 
     -- Initialize level
     levelManager.Load(slowZombieNum, fastZombieNum, largeZombieNum)
