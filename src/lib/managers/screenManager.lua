@@ -14,9 +14,8 @@ function screenManager.Load()
     local screens = {
         main = require('screens/mainMenu'),
         paused = require('screens/pauseMenu'),
-        level_1 = require('screens/level_1'),
-        level_2 = require('screens/level_2'),
-        level_3 = require('screens/level_3')
+        gameOver = require('screens/gameOver'),
+        survival = require('screens/survival')
     }
     manager.init(screens, 'main')
 end
@@ -25,14 +24,8 @@ end
 -- Screen Manager Key press check
 ----------------------------------------
 function screenManager.KeyPressed(key)
-    if(key == "1")then
-        manager.switch('level_1')
-    end
-    if(key == "2")then
-        manager.switch('level_1')
-    end
-    if(key == "3")then
-        manager.switch('level_1')
+    if(key == "space")then
+        manager.switch('survival')
     end
 
     if(isGameplay == true)then
