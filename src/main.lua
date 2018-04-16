@@ -38,19 +38,10 @@ function love.keypressed(key)
   debugger.keypressed(key, "f12")
 
   -- Overlay manage key press checks
-  overlayManager.KeyPressed(key) 
+  overlayManager.KeyPressed(key)
 
   -- Screen manager key press checks
   screenManager.KeyPressed(key)
-
-  -- DEBUG: Testing screenshake/audio playing
-  -- if (key == "f") then 
-  --   shack:setShake(20) 
-  -- end 
- 
-  -- if (key == "p") then 
-  --   audioManager.Play(audioManager.sounds.ui.click1) 
-  -- end
 end
 
 ----------------------------------------
