@@ -21,6 +21,10 @@ function gunManager.Load(gunSelect)
   gunSelection = spriteManager.sprites.weapons.tempGunSelection
   gunSelected = spriteManager.sprites.ui.gunSelection
   bullet = spriteManager.sprites.weapons.bullet
+  AmmoLeft = spriteManager.sprites.ui.AmmoLeft
+  Reloading = spriteManager.sprites.ui.Reloading
+
+  reloadingToggle = false
   gunSelectedX = 460
 
   -- Load gun audio/set audio volume
@@ -34,7 +38,7 @@ function gunManager.Load(gunSelect)
   reloadAmmoStore = 0
   reloadRepeat = 0
   reloading = false
-  
+
   timeSinceStart = love.timer.getTime()
   timeBetweenReload = 2.0
 
@@ -93,7 +97,7 @@ end
 function magLoad()
   CurrentGun.mag = CurrentGun.mag + reloadAmmoStore
   reloadAmmoStore = 0
-  
+
   --while(GunMag < (CurrentGun.magSize - GunMag)) do
   for i = 1, (CurrentGun.magSize - CurrentGun.mag) do
     if CurrentGun.ammo > 0 then
@@ -160,6 +164,7 @@ function BulletCollision()
           local dropChance = math.random(1,E.chance)
           E.health = E.health - CurrentGun.damage
           if E.health <= 0 then 
+            zombieManager.CreateDeathSprite(E.x,E.y)
             table.remove(Enemy, i)
             numZombiesLeft = numZombiesLeft - 1
             if dropChance == 1 then
@@ -188,23 +193,29 @@ end
 function UpdateBullets(dt)
   if love.mouse.isDown(1)  then 
     if CurrentGun.mag > 0 then
-        timeSinceStart  = love.timer.getTime()
-        CreateBullet(playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY())
-        for i, b in pairs(bullets) do
-          b.distance = math.sqrt((b.AngleX * b.AngleX) + (b.AngleY * b.AngleY))
-          b.DirX = b.AngleX / b.distance
-          b.DirY = b.AngleY / b.distance
-        end
-        reloadRepeat = 0
+      timeSinceStart  = love.timer.getTime()
+      CreateBullet(playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY())
+      for i, b in pairs(bullets) do
+        b.distance = math.sqrt((b.AngleX * b.AngleX) + (b.AngleY * b.AngleY))
+        b.DirX = b.AngleX / b.distance
+        b.DirY = b.AngleY / b.distance
+      end
+      reloadRepeat = 0
     else
     end
   end 
-  if GunMag == 0 then
+  if CurrentGun.mag == 0 then
     if love.timer.getTime() > timeSinceStart + timeBetweenReload then
       magLoad()
+      reloading = false
       timeSinceStart  = love.timer.getTime()
+    else
+      if CurrentGun.ammo > 0 then
+        reloading = true
+      end
     end
   end
+
 end
 
 function gunManager.Reload()
@@ -221,10 +232,10 @@ function gunManager.Update(dt)
   UpdateBullets(dt)
   BulletCollision()
   DropCollision()
-  
+
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
-  
+
   for i, b in pairs(bullets) do
     b.x = b.x + (b.DirX * 15)
     b.y = b.y + (b.DirY* 15)
@@ -255,13 +266,13 @@ end
 function gunManager.Draw()
   -- Draw crosshair
   love.graphics.draw(target,mouseX,mouseY,0,1,1, target:getWidth()/2, target:getHeight()/2)
-  love.graphics.print(CurrentGun.mag, 784,20, 0)
-  love.graphics.print(" / " , 840, 20,0 )
-  love.graphics.print(CurrentGun.ammo, 862, 20, 0)
-  love.graphics.print(reloadAmmoStore,20,20)
-
-  love.graphics.print(scrollWheelX,20,30)
-
+  love.graphics.print(CurrentGun.mag, 736,20, 0)
+  love.graphics.print(" / " , 770, 20,0 )
+  love.graphics.print(CurrentGun.ammo, 792, 20, 0)
+  love.graphics.draw(AmmoLeft, 619,23,0 ,0.2,0.2)
+  if reloading == true then
+    love.graphics.draw(Reloading,450,109)
+  end
   -- Draw bullets
   for i, b in pairs(bullets) do
     love.graphics.draw(bullet, b.x,b.y, 0, 1.7,1.0 ) -- work in progress

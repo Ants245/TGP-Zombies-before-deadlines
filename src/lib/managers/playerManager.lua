@@ -100,16 +100,20 @@ end
 ----------------------------------------
 -- Player Manager Draw
 ----------------------------------------
+function playerManager.SetHealth(health)
+  playerHealth = health
+end
+
 function playerManager.Draw()
     local playerAngle = math.atan2(mouseY - playerManager.GetPlayerVector():getY(), mouseX - playerManager.GetPlayerVector():getX()) + (math.pi/2)
-    love.graphics.draw(Player, activeFrame, playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY(), playerAngle)
+    love.graphics.draw(Player, activeFrame, playerManager.GetPlayerVector():getX(), playerManager.GetPlayerVector():getY(), playerAngle,1,1,7,11.5)
 
     --love.graphics.print(playerHealth, 1190,20, 0,2)
     love.graphics.setColor(230,0,0)
-    love.graphics.rectangle("fill",1130,25,playerHealth, 20)
+    love.graphics.rectangle("fill",1130,37,playerHealth, 20)
     love.graphics.setColor(255,255,255)
-    love.graphics.rectangle("line",1130,25,100,20)
-    love.graphics.draw(healthBar,1100,20,0,2,1.7,1.7)
+    love.graphics.rectangle("line",1130,37,100,20)
+    love.graphics.draw(healthBar,1100,29,0,2,1.7,1.7)
 end
 
 ----------------------------------------

@@ -52,7 +52,7 @@ function overlayManager.Draw()
     love.graphics.setFont(fontManager.fonts.rockSalt)
 
     -- Draw score/zombies left text
-    love.graphics.print(levelManager.GetNumZombiesLeft() .. " / " .. levelManager.GetNumZombies(), 980, 20, 0, 1, 1)
+    
 
     -- Draw pause menu overlay
     -- Must draw last to make top layer
