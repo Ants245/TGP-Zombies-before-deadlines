@@ -22,16 +22,13 @@ function spriteManager.Load()
   spriteManager.sprites.entities.zombieFat = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombie_fat.png")
 
   -- Weapons
-  spriteManager.sprites.weapons.shotgun = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_shotgun.png")
-  spriteManager.sprites.weapons.pistol = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_pistol.png")
+  -- spriteManager.sprites.weapons.shotgun = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_shotgun.png")
+  -- spriteManager.sprites.weapons.pistol = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_pistol.png")
   spriteManager.sprites.weapons.tempGunSelection = love.graphics.newImage(assetsSpritesPath .. "weapons/TempGunSelection.png") 
   spriteManager.sprites.weapons.bullet = love.graphics.newImage(assetsSpritesPath .. "weapons/bullet.png")
 
   -- UI spritesheets
   spriteManager.sprites.ui.crosshair = love.graphics.newImage(assetsSpritesPath .. "crosshair.png")
-  spriteManager.sprites.ui.red = love.graphics.newImage(assetsSpritesPath .. "ui/redSheet.png")
-  spriteManager.sprites.ui.green = love.graphics.newImage(assetsSpritesPath .. "ui/greenSheet.png")
-  spriteManager.sprites.ui.blue = love.graphics.newImage(assetsSpritesPath .. "ui/blueSheet.png")
   spriteManager.sprites.ui.ammoPickup = love.graphics.newImage(assetsSpritesPath .. "ui/ammoPickup.png")
   spriteManager.sprites.ui.gunSelection = love.graphics.newImage(assetsSpritesPath .. "ui/gunSelection.png")
   spriteManager.sprites.ui.healthBar = love.graphics.newImage(assetsSpritesPath .. "ui/HealthBarUI.png")
