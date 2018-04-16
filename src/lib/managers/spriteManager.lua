@@ -20,6 +20,7 @@ function spriteManager.Load()
   spriteManager.sprites.entities.zombie = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombie_normal.png")
   spriteManager.sprites.entities.zombieFast = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombie_fast.png")
   spriteManager.sprites.entities.zombieFat = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombie_fat.png")
+  spriteManager.sprites.entities.zombieDeath = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombieDeath.png")
 
   -- Weapons
   spriteManager.sprites.weapons.tempGunSelection = love.graphics.newImage(assetsSpritesPath .. "weapons/TempGunSelection.png") 
@@ -30,6 +31,9 @@ function spriteManager.Load()
   spriteManager.sprites.ui.ammoPickup = love.graphics.newImage(assetsSpritesPath .. "ui/ammoPickup.png")
   spriteManager.sprites.ui.gunSelection = love.graphics.newImage(assetsSpritesPath .. "ui/gunSelection.png")
   spriteManager.sprites.ui.healthBar = love.graphics.newImage(assetsSpritesPath .. "ui/HealthBarUI.png")
+  spriteManager.sprites.ui.AmmoLeft = love.graphics.newImage(assetsSpritesPath .. "ui/AmmoLeft.png")
+  spriteManager.sprites.ui.ZombieHead = love.graphics.newImage(assetsSpritesPath .. "ui/ZombieHead.png")
+  spriteManager.sprites.ui.Reloading = love.graphics.newImage(assetsSpritesPath .. "ui/Reloading.png")
 
   -- Level background images
   spriteManager.sprites.backgrounds.survival = love.graphics.newImage("assets/sprites/background_road.png")

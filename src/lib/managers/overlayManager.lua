@@ -16,14 +16,14 @@ function overlayManager.Load()
 end
 
 ----------------------------------------
--- Overlay Manager Key Press Check
+-- Overlay Manager Key press check
 ----------------------------------------
 function overlayManager.KeyPressed(key)
     
 end
 
 ----------------------------------------
--- Overlay Manager Mouse Press Check
+-- Overlay Manager Mouse press check
 ----------------------------------------
 function overlayManager.MousePressed(x, y, button)
     
@@ -50,9 +50,6 @@ end
 function overlayManager.Draw()
     -- Set font to rock salt
     love.graphics.setFont(fontManager.fonts.rockSalt)
-
-    -- Draw score/zombies left text
-    love.graphics.print(levelManager.GetNumZombiesLeft() .. " / " .. levelManager.GetNumZombies(), 980, 20, 0, 1, 1)
 
     -- Draw pause menu overlay
     -- Must draw last to make top layer

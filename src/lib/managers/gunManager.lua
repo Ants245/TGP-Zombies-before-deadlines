@@ -21,6 +21,10 @@ function gunManager.Load(gunSelect)
   gunSelection = spriteManager.sprites.weapons.tempGunSelection
   gunSelected = spriteManager.sprites.ui.gunSelection
   bullet = spriteManager.sprites.weapons.bullet
+  AmmoLeft = spriteManager.sprites.ui.AmmoLeft
+  Reloading = spriteManager.sprites.ui.Reloading
+
+  reloadingToggle = false
   gunSelectedX = 460
 
   -- Load gun audio/set audio volume
@@ -66,7 +70,6 @@ function gunManager.Load(gunSelect)
       Guns[i].ammo = 50
       Guns[i].mag = 50
     end
-
   end
 
   CurrentGun = Guns[0]
@@ -84,16 +87,16 @@ function gunManager.Load(gunSelect)
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
 
-  scrollWheelX =0 
+  scrollWheelX = 0
 end
 
 ----------------------------------------
--- Gun Manager Utility Methods
+-- Gun Manager Utility methods
 ----------------------------------------
 function magLoad()
   CurrentGun.mag = CurrentGun.mag + reloadAmmoStore
   reloadAmmoStore = 0
-  
+
   --while(GunMag < (CurrentGun.magSize - GunMag)) do
   for i = 1, (CurrentGun.magSize - CurrentGun.mag) do
     if CurrentGun.ammo > 0 then
@@ -160,6 +163,7 @@ function BulletCollision()
           local dropChance = math.random(1,E.chance)
           E.health = E.health - CurrentGun.damage
           if E.health <= 0 then 
+            zombieManager.CreateDeathSprite(E.x,E.y)
             table.remove(Enemy, i)
             numZombiesLeft = numZombiesLeft - 1
             if dropChance == 1 then
@@ -183,7 +187,7 @@ function DropCollision()
 end
 
 ----------------------------------------
--- Gun Manager Update Methods
+-- Gun Manager Update methods
 ----------------------------------------
 function UpdateBullets(dt)
   if love.mouse.isDown(1)  then 
@@ -196,13 +200,17 @@ function UpdateBullets(dt)
           b.DirY = b.AngleY / b.distance
         end
         reloadRepeat = 0
-    else
     end
-  end 
-  if GunMag == 0 then
+  end
+  if CurrentGun.mag == 0 then
     if love.timer.getTime() > timeSinceStart + timeBetweenReload then
       magLoad()
+      reloading = false
       timeSinceStart  = love.timer.getTime()
+    else
+      if CurrentGun.ammo > 0 then
+        reloading = true
+      end
     end
   end
 end
@@ -255,18 +263,22 @@ end
 function gunManager.Draw()
   -- Draw crosshair
   love.graphics.draw(target,mouseX,mouseY,0,1,1, target:getWidth()/2, target:getHeight()/2)
-  love.graphics.print(CurrentGun.mag, 784,20, 0)
-  love.graphics.print(" / " , 840, 20,0 )
-  love.graphics.print(CurrentGun.ammo, 862, 20, 0)
-  love.graphics.print(reloadAmmoStore,20,20)
+  love.graphics.print(CurrentGun.mag, 736,20, 0)
+  love.graphics.print(" / " , 770, 20,0 )
+  love.graphics.print(CurrentGun.ammo, 792, 20, 0)
+  love.graphics.draw(AmmoLeft, 619,23,0 ,0.2,0.2)
+ 
+  -- Draw reloading text 
+  if reloading == true then 
+    love.graphics.draw(Reloading,450,109) 
+  end 
 
-  love.graphics.print(scrollWheelX,20,30)
+  -- Draw bullets 
+  for i, b in pairs(bullets) do 
+    love.graphics.draw(bullet, b.x,b.y, 0, 1.7,1.0 ) -- work in progress 
+  end 
 
-  -- Draw bullets
-  for i, b in pairs(bullets) do
-    love.graphics.draw(bullet, b.x,b.y, 0, 1.7,1.0 ) -- work in progress
-  end
-
+  -- Draw ammo drops
   for u, j in pairs(AmmoDrops) do 
     love.graphics.draw(ammoPickup,j.x,j.y)
   end

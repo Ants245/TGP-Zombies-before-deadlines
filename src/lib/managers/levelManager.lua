@@ -37,10 +37,32 @@ function levelManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     elapsedTime = 0
     currentFrameTime =0 
     speedDecresTime = 500
+
+    level = 1
+    NextLevelCurrentTime = 0 
+    NextLevelDisplayTime = 5
+
+    slowZombieAmount = slowZombieNum
+    fastZombieAmount = fastZombieNum
+    largeZombieAmount = largeZombieNum
+end
+
+function CreateNewWave()
+  if numZombiesLeft <= 0 then
+    slowZombieAmount = slowZombieAmount + 20
+    fastZombieAmount = fastZombieAmount + 3
+    largeZombieAmount = largeZombieAmount + 2
+    zombieManager.CreateEnemyWave(slowZombieAmount,fastZombieAmount,largeZombieAmount) 
+    numZombiesLeft = slowZombieAmount + fastZombieAmount + largeZombieAmount
+    numZombies = slowZombieAmount + fastZombieAmount + largeZombieAmount
+    playerManager.SetHealth(100)
+    level = level + 1
+    NextLevelCurrentTime = love.timer.getTime()
+  end
 end
 
 ----------------------------------------
--- Level Manager Mouse Press Check
+-- Level Manager Mouse press check
 ----------------------------------------
 function levelManager.MousePressed(x, y, button)
     mouseX = love.mouse.getX()
@@ -49,7 +71,7 @@ function levelManager.MousePressed(x, y, button)
 end
 
 ----------------------------------------
--- Level Manager Utility Methods
+-- Level Manager Utility methods
 ----------------------------------------
 function levelManager.GetNumZombies()
     return numZombies
@@ -60,21 +82,31 @@ function levelManager.GetNumZombiesLeft()
 end
 
 ----------------------------------------
--- Level Manager Update Methods
+-- Level Manager Update methods
 ----------------------------------------
 function levelManager.Update(dt)
     playerManager.Update(dt)
     zombieManager.Update(dt)
     gunManager.Update(dt)
+    CreateNewWave()
 end
 
 ----------------------------------------
--- Level Manager Draw Methods
+-- Level Manager Draw methods
 ----------------------------------------
 function levelManager.Draw()
-    playerManager.Draw()
     zombieManager.Draw()
     gunManager.Draw()
+    playerManager.Draw()
+    love.graphics.print(levelManager.GetNumZombiesLeft() .. " / " .. levelManager.GetNumZombies(), 940, 20, 0, 1, 1)
+
+    if love.timer.getTime() < NextLevelCurrentTime + NextLevelDisplayTime then
+        love.graphics.setFont(fontManager.fonts.rockSaltBig)
+        love.graphics.print("level  "..level, 500,100,0,1,1)
+        love.graphics.setFont(fontManager.fonts.rockSalt)
+    end
+
+    love.graphics.print("level  "..level, 10,0,0,1,1)
 
     -- Set background color
     love.graphics.setColor(255, 255, 255, 255)

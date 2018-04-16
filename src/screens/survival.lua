@@ -9,9 +9,9 @@ log = require('plugins/Log')
 survival = {}
 
 -- Number of zombies to spawn
-local slowZombieNum = 200
-local fastZombieNum = 10
-local largeZombieNum = 10
+local slowZombieNum = 150
+local fastZombieNum = 4
+local largeZombieNum = 4
 
 ----------------------------------------
 -- Create new screen
