@@ -1,5 +1,5 @@
 screenManager = require('lib/managers/screenManager')
-audoManager = require('lib/managers/audioManager')
+audioManager = require('lib/managers/audioManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
 
@@ -11,10 +11,11 @@ gameOver = {}
 function gameOver.new()
     local self = screen.new()
 
-    log.info("[INIT]: Loading game over screen...")
+    log.info("[INIT]: Loading game over...")
 
     screenManager.SetIsGameplay(false)
 
+    -- Play game over sound when player dies
     audioManager.Play(audioManager.sounds.voiceover.game_over)
 
     function self:update(dt)
@@ -44,4 +45,4 @@ function gameOver.Draw()
     love.graphics.setColor(255, 255, 255, 255)
 end
 
-return mainMenu
+return gameOver
