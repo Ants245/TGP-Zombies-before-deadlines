@@ -48,6 +48,11 @@ function level_1.Update(dt)
 
     -- Update overlay
     overlayManager.Update(dt)
+
+    -- Check for gameover
+    if(playerManager.GetPlayerHealth() == 0) then
+        manager.switch('gameOver')
+    end
 end
 
 ----------------------------------------
