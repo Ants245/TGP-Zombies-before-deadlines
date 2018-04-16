@@ -22,8 +22,6 @@ function spriteManager.Load()
   spriteManager.sprites.entities.zombieFat = love.graphics.newImage(assetsSpritesPath .. "entities/zombie/zombie_fat.png")
 
   -- Weapons
-  -- spriteManager.sprites.weapons.shotgun = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_shotgun.png")
-  -- spriteManager.sprites.weapons.pistol = love.graphics.newImage(assetsSpritesPath .. "weapons/spritesheet_pistol.png")
   spriteManager.sprites.weapons.tempGunSelection = love.graphics.newImage(assetsSpritesPath .. "weapons/TempGunSelection.png") 
   spriteManager.sprites.weapons.bullet = love.graphics.newImage(assetsSpritesPath .. "weapons/bullet.png")
 
