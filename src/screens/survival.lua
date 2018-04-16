@@ -6,7 +6,7 @@ screenManager = require('lib/managers/screenManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
 
-level_1 = {}
+survival = {}
 
 -- Number of zombies to spawn
 local slowZombieNum = 200
@@ -16,7 +16,7 @@ local largeZombieNum = 10
 ----------------------------------------
 -- Create new screen
 ----------------------------------------
-function level_1.new()
+function survival.new()
     local self = screen.new()
 
     log.info("[INIT]: Loading level 1...")
@@ -29,11 +29,11 @@ function level_1.new()
     levelManager.Load(slowZombieNum, fastZombieNum, largeZombieNum)
 
     function self:update(dt)
-        level_1.Update(dt)
+        survival.Update(dt)
     end
 
     function self:draw()
-        level_1.Draw()
+        survival.Draw()
     end
 
     return self
@@ -42,7 +42,7 @@ end
 ----------------------------------------
 -- Update method
 ----------------------------------------
-function level_1.Update(dt)
+function survival.Update(dt)
     -- Update level manager
     levelManager.Update(dt)
 
@@ -60,16 +60,16 @@ end
 ----------------------------------------
 function DrawBackground(posX, posY)
   -- Set sprite wrap mode to repeat(tile)
-  spriteManager.sprites.backgrounds.level_1:setWrap("mirroredrepeat", "mirroredrepeat")
+  spriteManager.sprites.backgrounds.survival:setWrap("mirroredrepeat", "mirroredrepeat")
 
   -- Draw sprite
-  love.graphics.draw(spriteManager.sprites.backgrounds.level_1, posX, posY)
+  love.graphics.draw(spriteManager.sprites.backgrounds.survival, posX, posY)
 end
 
 ----------------------------------------
 -- Draw method
 ----------------------------------------
-function level_1.Draw()
+function survival.Draw()
   -- Draw background image
   DrawBackground()
 
@@ -80,4 +80,4 @@ function level_1.Draw()
   overlayManager.Draw()
 end
 
-return level_1
+return survival

@@ -37,7 +37,7 @@ function spriteManager.Load()
   spriteManager.sprites.ui.healthBar = love.graphics.newImage(assetsSpritesPath .. "ui/HealthBarUI.png")
 
   -- Level background images
-  spriteManager.sprites.backgrounds.level_1 = love.graphics.newImage("assets/sprites/background_road.png")
+  spriteManager.sprites.backgrounds.survival = love.graphics.newImage("assets/sprites/background_road.png")
 end
 
 return spriteManager
