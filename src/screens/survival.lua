@@ -19,7 +19,7 @@ local largeZombieNum = 10
 function survival.new()
     local self = screen.new()
 
-    log.info("[INIT]: Loading level 1...")
+    log.info("[INIT]: Loading survival...")
 
     screenManager.SetIsGameplay(true)
 

@@ -16,6 +16,10 @@ function mainMenu.new()
 
     screenManager.SetIsGameplay(false)
 
+    function self:keypressed(key)
+        mainMenu.KeyPressed(key)
+    end
+
     function self:update(dt)
         mainMenu.Update(dt)
     end
@@ -25,6 +29,15 @@ function mainMenu.new()
     end
 
     return self
+end
+
+----------------------------------------
+-- Key pressed method
+----------------------------------------
+function mainMenu.KeyPressed(key)
+    if(key == "space")then
+        screenManager.GetScreenObj().switch('survival')
+    end
 end
 
 ----------------------------------------

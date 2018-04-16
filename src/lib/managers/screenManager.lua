@@ -25,10 +25,6 @@ end
 -- Screen Manager Key press check
 ----------------------------------------
 function screenManager.KeyPressed(key)
-    if(key == "space")then
-        manager.switch('survival')
-    end
-
     if(isGameplay == true)then
         if(key == "escape" and isPaused == false) then
             isPaused = true
@@ -38,6 +34,8 @@ function screenManager.KeyPressed(key)
             manager.pop()
         end
     end
+
+    manager.keypressed(key)
 end
 
 ----------------------------------------
@@ -57,6 +55,10 @@ end
 ----------------------------------------
 -- Screen Manager Utility methods
 ----------------------------------------
+function screenManager.GetScreenObj()
+    return manager
+end
+
 function screenManager.SetIsGameplay(setIsGameplay)
     isGameplay = setIsGameplay
 end
