@@ -1,5 +1,4 @@
 -- Plugins
-shack = require('plugins/Shack')
 debugger = require('lib/debugger')
 
 -- Managers
@@ -16,9 +15,6 @@ debugger.fpsMath()
 -- Love2D Initialization
 ----------------------------------------
 function love.load()
-  -- Initialize Shack to game window dimensions
-  shack:setDimensions(love.graphics.getDimensions())
-
   -- Initialize assets
   spriteManager.Load()
   audioManager.Load()
@@ -72,9 +68,6 @@ end
 -- Love2D Update
 ----------------------------------------
 function love.update(dt)
-  -- Shack update
-  shack:update(dt)
-
   -- Screen manager update
   screenManager.Update(dt)
 
@@ -86,9 +79,6 @@ end
 -- Love2D Draw
 ----------------------------------------
 function love.draw()
-  -- Draw shack
-  shack:apply()
-
   -- Screen manager draw
   screenManager.Draw()
 
