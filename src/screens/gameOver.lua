@@ -35,9 +35,19 @@ function gameOver.new()
         clicked = false
     }
     
-    exitButton = {
+    mainMenuButton = {
         x = (love.graphics.getWidth() / 2) - 100,
         y = (love.graphics.getHeight() / 2) + 75,
+        image = spriteManager.sprites.ui.Button,
+        text = "Main Menu",
+        textOffsetX = 27.5,
+        textOffsetY = 7,
+        clicked = false
+    }
+    
+    exitButton = {
+        x = (love.graphics.getWidth() / 2) - 100,
+        y = (love.graphics.getHeight() / 2) + 150,
         image = spriteManager.sprites.ui.Button,
         text = "Exit",
         textOffsetX = 67.5,
@@ -68,6 +78,9 @@ function gameOver.MousePressed(x, y, button)
 		if(x >= tryAgainButton.x and x <= tryAgainButton.x + tryAgainButton.image:getWidth() and y >= tryAgainButton.y and y <= tryAgainButton.y + tryAgainButton.image:getHeight()) then
 			tryAgainButton.clicked = true
         end
+        if(x >= mainMenuButton.x and x <= mainMenuButton.x + mainMenuButton.image:getWidth() and y >= mainMenuButton.y and y <= mainMenuButton.y + mainMenuButton.image:getHeight()) then
+			mainMenuButton.clicked = true
+        end
         if(x >= exitButton.x and x <= exitButton.x + exitButton.image:getWidth() and y >= exitButton.y and y <= exitButton.y + exitButton.image:getHeight()) then
 			exitButton.clicked = true
         end
@@ -80,6 +93,9 @@ end
 function gameOver.Update(dt)
     if(tryAgainButton.clicked == true) then
 		screenManager.GetScreenObj().switch('survival')
+    end
+    if(mainMenuButton.clicked == true) then
+		screenManager.GetScreenObj().switch('main')
     end
     if(exitButton.clicked == true) then
 		love.event.quit()
@@ -111,6 +127,12 @@ function gameOver.Draw()
     love.graphics.draw(tryAgainButton.image, tryAgainButton.x, tryAgainButton.y)
     love.graphics.setColor(255, 255, 255)
     love.graphics.print(tryAgainButton.text, (tryAgainButton.x + tryAgainButton.textOffsetX), (tryAgainButton.y - tryAgainButton.textOffsetY))
+
+    -- Draw main menu button
+    love.graphics.setColor(255, 0, 0)
+    love.graphics.draw(mainMenuButton.image, mainMenuButton.x, mainMenuButton.y)
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.print(mainMenuButton.text, (mainMenuButton.x + mainMenuButton.textOffsetX), (mainMenuButton.y - mainMenuButton.textOffsetY))
 
     -- Draw Exit button
     love.graphics.setColor(255, 0, 0)
