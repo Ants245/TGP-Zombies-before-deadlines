@@ -3,6 +3,7 @@ log = require('plugins/Log')
 audioManager = {}
 audioManager.sounds = {}
 audioManager.sounds.voiceover = {}
+audioManager.sounds.music = {}
 audioManager.sounds.entities = {}
 audioManager.sounds.entities.player = {}
 audioManager.sounds.entities.player.guns = {}
@@ -23,6 +24,8 @@ function audioManager.Load()
   audioManager.sounds.voiceover.begin = love.audio.newSource(assetsSoundsPath .. "voiceover/begin.ogg")
   audioManager.sounds.voiceover.game_over = love.audio.newSource(assetsSoundsPath .. "voiceover/game_over.ogg")
 
+  -- Music
+  audioManager.sounds.music.gameplay_music = love.audio.newSource(assetsSoundsPath .. "music/gameplay_music.ogg")
 
   -- Player sounds
   audioManager.sounds.entities.player.guns.fire = love.audio.newSource(assetsSoundsPath .. "entities/player/guns/pistol.mp3")

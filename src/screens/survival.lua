@@ -23,7 +23,13 @@ function survival.new()
 
     screenManager.SetIsGameplay(true)
 
+    -- Play "Begin" voiceover
     audioManager.Play(audioManager.sounds.voiceover.begin)
+    
+    gameplayMusic = audioManager.sounds.music.gameplay_music
+    gameplayMusic:setVolume(0.1)
+    
+    audioManager.Play(gameplayMusic)
 
     -- Initialize level
     levelManager.Load(slowZombieNum, fastZombieNum, largeZombieNum)
@@ -51,6 +57,9 @@ function survival.Update(dt)
 
     -- Check for gameover
     if(playerManager.GetPlayerHealth() == 0) then
+        if(gameplayMusic:isPlaying() == true) then
+            gameplayMusic:stop()
+        end
         manager.switch('gameOver')
     end
 end
