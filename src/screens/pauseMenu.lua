@@ -29,7 +29,12 @@ end
 -- Update method
 ----------------------------------------
 function pauseMenu.Update(dt)
-
+    -- Toggle mouse cursor if game is paused
+    if(screenManager.GetIsPaused() == true) then
+        love.mouse.setVisible(true)
+    else 
+        love.mouse.setVisible(false)
+    end
 end
 
 ----------------------------------------
