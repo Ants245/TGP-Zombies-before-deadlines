@@ -24,7 +24,9 @@ function survival.new()
     screenManager.SetIsGameplay(true)
 
     -- Play "Begin" voiceover
-    audioManager.Play(audioManager.sounds.voiceover.begin)
+    beginVoiceOver = audioManager.sounds.voiceover.begin
+    beginVoiceOver:setVolume(0.25)
+    audioManager.Play(beginVoiceOver)
     
     gameplayMusic = audioManager.sounds.music.gameplay_music
     gameplayMusic:setVolume(0.15)
