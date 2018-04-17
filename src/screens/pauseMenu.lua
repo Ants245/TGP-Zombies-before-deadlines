@@ -1,3 +1,4 @@
+audioManager = require('lib/managers/audioManager')
 screenManager = require('lib/managers/screenManager')
 screen = require('plugins/Screen')
 log = require('plugins/Log')
@@ -32,8 +33,10 @@ function pauseMenu.Update(dt)
     -- Toggle mouse cursor if game is paused
     if(screenManager.GetIsPaused() == true) then
         love.mouse.setVisible(true)
+        audioManager.sounds.music.gameplay_music:setVolume(0.025)
     else 
         love.mouse.setVisible(false)
+        audioManager.sounds.music.gameplay_music:setVolume(0.15)
     end
 end
 

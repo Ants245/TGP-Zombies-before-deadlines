@@ -27,7 +27,7 @@ function survival.new()
     audioManager.Play(audioManager.sounds.voiceover.begin)
     
     gameplayMusic = audioManager.sounds.music.gameplay_music
-    gameplayMusic:setVolume(0.1)
+    gameplayMusic:setVolume(0.15)
     
     audioManager.Play(gameplayMusic)
 
