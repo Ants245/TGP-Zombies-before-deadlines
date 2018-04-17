@@ -62,6 +62,9 @@ function survival.Update(dt)
         if(gameplayMusic:isPlaying() == true) then
             gameplayMusic:stop()
         end
+
+        love.mouse.setVisible(true)
+
         manager.switch('gameOver')
     end
 end
