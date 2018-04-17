@@ -44,6 +44,10 @@ end
 -- Draw method
 ----------------------------------------
 function pauseMenu.Draw()
+    -- Draw "Paused" text on center of screen
+    love.graphics.print("PAUSED!", (love.graphics.getWidth() / 2) - 50, (love.graphics.getHeight() / 2) - 50)
+    love.graphics.print("Press escape to continue", (love.graphics.getWidth() / 2) - 150, (love.graphics.getHeight() / 2) + 50)
+
     -- Transparent background overlay
     love.graphics.setColor(0, 0, 0, 50)
     love.graphics.rectangle('fill', 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
