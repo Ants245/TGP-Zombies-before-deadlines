@@ -34,8 +34,10 @@ function spriteManager.Load()
   spriteManager.sprites.ui.AmmoLeft = love.graphics.newImage(assetsSpritesPath .. "ui/AmmoLeft.png")
   spriteManager.sprites.ui.ZombieHead = love.graphics.newImage(assetsSpritesPath .. "ui/ZombieHead.png")
   spriteManager.sprites.ui.Reloading = love.graphics.newImage(assetsSpritesPath .. "ui/Reloading.png")
+  spriteManager.sprites.ui.Button = love.graphics.newImage(assetsSpritesPath .. "ui/button.png")
 
   -- Level background images
+  spriteManager.sprites.backgrounds.mainMenu = love.graphics.newImage("assets/sprites/background_mainMenu.png")
   spriteManager.sprites.backgrounds.survival = love.graphics.newImage("assets/sprites/background_road.png")
 end
 

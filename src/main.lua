@@ -53,6 +53,9 @@ function love.mousepressed(x, y, button)
 
   -- Level manager mouse action checks
   levelManager.MousePressed(x, y, button) 
+
+  -- Screen manager key press checks
+  screenManager.MousePressed(x, y, button)
 end
 
 ----------------------------------------

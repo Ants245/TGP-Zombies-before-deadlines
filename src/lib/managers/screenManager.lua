@@ -41,6 +41,13 @@ function screenManager.KeyPressed(key)
 end
 
 ----------------------------------------
+-- Screen Manager Mouse checks
+----------------------------------------
+function screenManager.MousePressed(x, y, button)
+    manager.mousepressed(x, y, button)
+end
+
+----------------------------------------
 -- Screen Manager Update
 ----------------------------------------
 function screenManager.Update(dt)

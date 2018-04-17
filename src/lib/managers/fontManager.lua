@@ -11,6 +11,7 @@ local assetsFontsPath = "assets/fonts/"
 function fontManager.Load()
   log.info("[INIT]: Loading fonts...")
   fontManager.fonts.rockSalt = love.graphics.newFont(assetsFontsPath .. "RockSalt-Regular.ttf", 20)
+  fontManager.fonts.rockSaltBig = love.graphics.newFont(assetsFontsPath .. "RockSalt-Regular.ttf", 64)
 end
 
 return fontManager
