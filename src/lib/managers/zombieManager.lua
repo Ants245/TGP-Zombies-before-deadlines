@@ -15,8 +15,8 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     zombieHead = spriteManager.sprites.ui.ZombieHead
     zombieDeath = spriteManager.sprites.entities.zombieDeath
 
-    zombieDeath = audioManager.sounds.entities.zombie.zombie_death
-    zombieDeath:setVolume(0.5)
+    -- zombieDeath = audioManager.sounds.entities.zombie.zombie_death
+    -- zombieDeath:setVolume(0.5)
 
     Enemy = {}
     EnemyDeathSprite = {}
