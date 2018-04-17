@@ -1,3 +1,4 @@
+audioManager = require('lib/managers/audioManager')
 spriteManager = require('lib/managers/spriteManager')
 playerManager = require('lib/managers/playerManager')
 zombieManager = require('lib/managers/zombieManager')
@@ -30,6 +31,9 @@ function gunManager.Load(gunSelect)
   -- Load gun audio/set audio volume
   gunSound = audioManager.sounds.entities.player.guns.fire
   gunSound:setVolume(0.1)
+
+  zombieDeathSound = audioManager.sounds.entities.zombie.zombie_death
+  zombieDeathSound:setVolume(0.5)
 
   -- Gun default
   Ammo = 100
@@ -165,6 +169,15 @@ function BulletCollision()
           if E.health <= 0 then 
             zombieManager.CreateDeathSprite(E.x,E.y)
             table.remove(Enemy, i)
+
+            -- Play zombie death sound effect
+            if zombieDeathSound:isPlaying() then
+              zombieDeathSound:stop()
+              zombieDeathSound:play()
+            else
+              zombieDeathSound:play()
+            end
+
             numZombiesLeft = numZombiesLeft - 1
             if dropChance == 1 then
               DropAmmo(E.x, E.y)
