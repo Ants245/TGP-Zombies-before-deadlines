@@ -10,6 +10,7 @@ function screenManager.Load()
     -- If active screen is gameplay/level
     isGameplay = false
     isPaused = false
+    isGameOver = false
 
     -- Table of all screens to load
     local screens = {
@@ -25,6 +26,9 @@ end
 -- Screen Manager Key press check
 ----------------------------------------
 function screenManager.KeyPressed(key)
+    manager.keypressed(key)
+
+    -- Pause menu check
     if(isGameplay == true)then
         if(key == "escape" and isPaused == false) then
             isPaused = true
@@ -34,8 +38,6 @@ function screenManager.KeyPressed(key)
             manager.pop()
         end
     end
-
-    manager.keypressed(key)
 end
 
 ----------------------------------------
@@ -73,6 +75,14 @@ end
 
 function screenManager.GetIsPaused()
     return isPaused
+end
+
+function screenManager.GetIsGameOver()
+    return isGameOver
+end
+
+function screenManager.SetIsGameOver(value)
+    isGameOver = value
 end
 
 return screenManager

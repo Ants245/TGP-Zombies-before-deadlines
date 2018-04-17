@@ -85,10 +85,12 @@ end
 -- Level Manager Update methods
 ----------------------------------------
 function levelManager.Update(dt)
-    playerManager.Update(dt)
-    zombieManager.Update(dt)
-    gunManager.Update(dt)
-    CreateNewWave()
+    if(screenManager.GetIsPaused() == false) then
+        playerManager.Update(dt)
+        zombieManager.Update(dt)
+        gunManager.Update(dt)
+        CreateNewWave()
+    end
 end
 
 ----------------------------------------

@@ -14,10 +14,6 @@ function pauseMenu.new()
 
     screenManager.SetIsGameplay(true)
 
-    function self:keypressed(key)
-        pauseMenu.KeyPressed(key)
-    end
-
     function self:update(dt)
         pauseMenu.Update(dt)
     end
@@ -27,21 +23,6 @@ function pauseMenu.new()
     end
 
     return self
-end
-
-----------------------------------------
--- Key pressed method
-----------------------------------------
-function pauseMenu.KeyPressed(key)
-    if(key == "escape" and screenManager.GetIsGameplay() == true) then
-        if(screenManager.GetIsPaused() == false) then
-            screenManager.SetIsPaused(true)
-            screenManager.GetScreenObj().push('paused')
-        elseif(screenManager.GetIsPaused() == true) then
-            screenManager.SetIsPaused(false)
-            screenManager.GetScreenObj().pop()
-        end
-    end
 end
 
 ----------------------------------------
@@ -55,6 +36,7 @@ end
 -- Draw method
 ----------------------------------------
 function pauseMenu.Draw()
+    -- Transparent background overlay
     love.graphics.setColor(0, 0, 0, 50)
     love.graphics.rectangle('fill', 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
     love.graphics.setColor(255, 255, 255, 255)
