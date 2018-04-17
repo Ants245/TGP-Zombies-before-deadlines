@@ -2,9 +2,11 @@ log = require('plugins/Log')
 
 audioManager = {}
 audioManager.sounds = {}
-audioManager.sounds.ui = {}
 audioManager.sounds.voiceover = {}
-audioManager.sounds.guns = {}
+audioManager.sounds.entities = {}
+audioManager.sounds.entities.player = {}
+audioManager.sounds.entities.player.guns = {}
+audioManager.sounds.entities.zombie = {}
 
 local assetsSoundsPath = "assets/sounds/"
 
@@ -17,10 +19,16 @@ function audioManager.Load()
   -- Set window volume to 100%
   love.audio.setVolume(1)
 
+  -- Voiceover
   audioManager.sounds.voiceover.begin = love.audio.newSource(assetsSoundsPath .. "voiceover/begin.ogg")
   audioManager.sounds.voiceover.game_over = love.audio.newSource(assetsSoundsPath .. "voiceover/game_over.ogg")
 
-  audioManager.sounds.guns.fire = love.audio.newSource(assetsSoundsPath .. "guns/pistol.mp3")
+
+  -- Player sounds
+  audioManager.sounds.entities.player.guns.fire = love.audio.newSource(assetsSoundsPath .. "entities/player/guns/pistol.mp3")
+
+  -- Zombie sounds
+  audioManager.sounds.entities.zombie.zombie_death = love.audio.newSource(assetsSoundsPath .. "entities/zombie/zombie_death.mp3")
 end
 
 ----------------------------------------

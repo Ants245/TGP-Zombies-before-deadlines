@@ -28,7 +28,7 @@ function gunManager.Load(gunSelect)
   gunSelectedX = 460
 
   -- Load gun audio/set audio volume
-  gunSound = audioManager.sounds.guns.fire
+  gunSound = audioManager.sounds.entities.player.guns.fire
   gunSound:setVolume(0.1)
 
   -- Gun default

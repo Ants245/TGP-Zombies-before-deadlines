@@ -1,3 +1,4 @@
+audioManager = require('lib/managers/audioManager')
 log = require('plugins/Log')
 
 zombieManager = {}
@@ -13,6 +14,9 @@ function zombieManager.Load(slowZombieNum,fastZombieNum,largeZombieNum)
     zombieFat = spriteManager.sprites.entities.zombieFat
     zombieHead = spriteManager.sprites.ui.ZombieHead
     zombieDeath = spriteManager.sprites.entities.zombieDeath
+
+    zombieDeath = audioManager.sounds.entities.zombie.zombie_death
+    zombieDeath:setVolume(0.5)
 
     Enemy = {}
     EnemyDeathSprite = {}
